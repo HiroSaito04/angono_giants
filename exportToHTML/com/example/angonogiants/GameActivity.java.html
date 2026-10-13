@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>GameActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+GameActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">angonogiants</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Log</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">GameActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s2">{</span>
+
+    <span class="s0">private </span><span class="s1">GameView gameView</span><span class="s2">;</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">Bundle savedInstanceState</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">);</span>
+
+        <span class="s3">// Initialize GameView</span>
+        <span class="s1">gameView </span><span class="s2">= </span><span class="s0">new </span><span class="s1">GameView</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s0">null</span><span class="s2">);</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">gameView</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onDestroy</span><span class="s2">() {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onDestroy</span><span class="s2">();</span>
+
+        <span class="s3">// Save score before exiting</span>
+        <span class="s0">int </span><span class="s1">finalScore </span><span class="s2">= </span><span class="s1">gameView</span><span class="s2">.</span><span class="s1">getScore</span><span class="s2">();</span>
+        <span class="s1">Log</span><span class="s2">.</span><span class="s1">d</span><span class="s2">(</span><span class="s4">&quot;GameActivity&quot;</span><span class="s2">, </span><span class="s4">&quot;Final Score: &quot; </span><span class="s2">+ </span><span class="s1">finalScore</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameActivity">
+
+    <!-- Custom GameView -->
+    <ImageView
+        android:id="@+id/tilelayerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:layout_alignParentTop="true" />
+
+    <!-- Timer Icon -->
+    <com.example.angonogiants.GameView
+        android:id="@+id/gameView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+    <ImageView
+        android:id="@+id/treelayerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:layout_alignParentTop="true"/>
+
+    <ImageView
+        android:id="@+id/timerIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/timericon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Timer Countdown -->
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/start"
+        app:layout_constraintStart_toEndOf="@id/timerIcon"
+        app:layout_constraintTop_toTopOf="@id/timerIcon" />
+
+    <!-- Zword Icon (Before Tap Counter) -->
+    <ImageView
+        android:id="@+id/zwordIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/zwordicon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timerIcon" />
+
+    <!-- Score Counter -->
+    <TextView
+        android:id="@+id/ScoreCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score: "
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/start"
+        app:layout_constraintStart_toEndOf="@id/zwordIcon"
+        app:layout_constraintTop_toBottomOf="@id/timerIcon" />
+
+    <!-- Wave Text (Bottom Centered) -->
+
+    <!-- Pause/Resume Button -->
+
+    <TextView
+        android:id="@+id/waveCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/start"
+        android:text="Wave 1"
+        android:textColor="@android:color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnPauseResume"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/pause_button_animation"
+        android:contentDescription="Pause/Resume"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Game Over Image -->
+    <ImageView
+        android:id="@+id/gameOverImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:src="@drawable/gameoverzkull"
+        android:contentDescription="Appears after losing"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+    <!-- Lost Final Score Image -->
+    <ImageView
+        android:id="@+id/lostfinalscoreiv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:src="@drawable/lostfinalscore"
+        android:contentDescription="Appears after the game over image after 5 second delay"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Game Won Image -->
+    <ImageView
+        android:id="@+id/gameThanksImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/gamewonthanks"
+        android:visibility="gone"
+        android:contentDescription="Appears when the game is won"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/gameThanksText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/slkscr"
+        android:textAlignment="center"
+        android:textColor="#401B13"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/gameWonImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Appears when the game is won"
+        android:scaleType="fitXY"
+        android:src="@drawable/wonfinalscore"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <!-- Final Score Container -->
+
+
+    <ImageButton
+        android:id="@+id/mainMenuButton"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/mainmenu_button_animation"
+        android:contentDescription="move to main menu"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/restartButton"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:background="@drawable/restart_animation"
+        android:contentDescription="restart game"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.381" />
+
+    <ImageButton
+    android:id="@+id/menuButton"
+    android:layout_width="150dp"
+    android:layout_height="60dp"
+    android:background="@drawable/mainmenu_button_animation"
+    android:contentDescription="move to main menu"
+    android:scaleType="fitCenter"
+    android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.5" />
+
+    <ImageButton
+        android:id="@+id/exitButton"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:background="@drawable/exit_animation"
+        android:contentDescription="exit"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.616" />
+
+    <!-- Final Score Container -->
+    <LinearLayout
+        android:id="@+id/finalScoreContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <!-- Player Name -->
+        <TextView
+            android:id="@+id/playerNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Player"
+            android:shadowColor="#21140E"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2"
+            android:textSize="35sp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/start" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+            <ImageView
+                android:id="@+id/finalTimerIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/timericon" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/start"
+                android:text="Time Played"
+                android:shadowColor="#21140E"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="2"
+                android:textColor="@android:color/white"
+                android:textSize="23sp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/finalScoreTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/slkscr"
+            android:text="00:00"
+            android:shadowColor="#21140E"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+            <ImageView
+                android:id="@+id/finalZwordIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/zwordicon" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/start"
+                android:shadowColor="#21140E"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="2"
+                android:text="Score"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/finalScoreTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/slkscr"
+            android:shadowColor="#21140E"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2"
+            android:text="00000"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="15dp">
+            <ImageView
+                android:id="@+id/finalwaveIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/higantes7top" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/start"
+                android:shadowColor="#21140E"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="2"
+                android:text="Wave"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/finalwaveTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/slkscr"
+            android:shadowColor="#21140E"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2"
+            android:text="00"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/gifOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"  />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

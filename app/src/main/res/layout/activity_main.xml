@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/backgroundGif"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true" />
+    <LinearLayout
+        android:id="@+id/midLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingBottom="20dp">
+    <ImageView
+        android:id="@+id/btnLeaderboard"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="right"
+        android:scaleType="fitXY"
+        android:contentDescription="Open Leaderboard"
+        android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingBottom="50dp">
+
+        <EditText
+            android:id="@+id/playerNameEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:hint="Enter Your Name"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textColorHint="#EFD5BD"
+            android:background="#5C000000"
+            android:fontFamily="@font/start"
+            android:textColor="#EFD5BD"
+            android:imeOptions="actionDone"  android:singleLine="true" />
+
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="175dp"
+            android:layout_height="75dp"
+            android:background="@drawable/start_button_animation"
+            android:contentDescription="Start Game"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/AbtusLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="100dp"
+        android:gravity="bottom">
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="left|bottom"
+            android:contentDescription="Open About Us">
+
+            <ImageView
+                android:id="@+id/btnAboutUs"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/auboard"
+                android:contentDescription="Open About Us" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
