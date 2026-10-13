@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>MainActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">angonogiants</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Intent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">media</span><span class="s2">.</span><span class="s1">MediaPlayer</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Log</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Button</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">EditText</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">MainActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s2">{</span>
+
+    <span class="s0">private </span><span class="s1">MediaPlayer bgMusic</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">MediaPlayer buttonSound</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">EditText playerNameEditText</span><span class="s2">;</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">Bundle savedInstanceState</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">);</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">activity_main</span><span class="s2">);</span>
+
+        <span class="s1">playerNameEditText </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">playerNameEditText</span><span class="s2">);</span>
+
+        <span class="s0">try </span><span class="s2">{</span>
+            <span class="s1">bgMusic </span><span class="s2">= </span><span class="s1">MediaPlayer</span><span class="s2">.</span><span class="s1">create</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">raw</span><span class="s2">.</span><span class="s1">bgmusic</span><span class="s2">);</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">bgMusic </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                <span class="s1">bgMusic</span><span class="s2">.</span><span class="s1">setLooping</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+                <span class="s1">bgMusic</span><span class="s2">.</span><span class="s1">start</span><span class="s2">();</span>
+            <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                <span class="s1">Log</span><span class="s2">.</span><span class="s1">e</span><span class="s2">(</span><span class="s3">&quot;MainActivity&quot;</span><span class="s2">, </span><span class="s3">&quot;Failed to create MediaPlayer&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">Exception e</span><span class="s2">) {</span>
+            <span class="s1">Log</span><span class="s2">.</span><span class="s1">e</span><span class="s2">(</span><span class="s3">&quot;MainActivity&quot;</span><span class="s2">, </span><span class="s3">&quot;Error creating MediaPlayer: &quot; </span><span class="s2">+ </span><span class="s1">e</span><span class="s2">.</span><span class="s1">getMessage</span><span class="s2">());</span>
+        <span class="s2">}</span>
+
+        <span class="s0">try </span><span class="s2">{</span>
+            <span class="s1">buttonSound </span><span class="s2">= </span><span class="s1">MediaPlayer</span><span class="s2">.</span><span class="s1">create</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">raw</span><span class="s2">.</span><span class="s1">buttonsound</span><span class="s2">);</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">Exception e</span><span class="s2">) {</span>
+            <span class="s1">Log</span><span class="s2">.</span><span class="s1">e</span><span class="s2">(</span><span class="s3">&quot;MainActivity&quot;</span><span class="s2">, </span><span class="s3">&quot;Error creating buttonSound: &quot; </span><span class="s2">+ </span><span class="s1">e</span><span class="s2">.</span><span class="s1">getMessage</span><span class="s2">());</span>
+        <span class="s2">}</span>
+
+        <span class="s1">Button btnStart </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">btnStart</span><span class="s2">);</span>
+        <span class="s1">Button btnLeaderboard </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">btnLeaderboard</span><span class="s2">);</span>
+
+        <span class="s1">btnStart</span><span class="s2">.</span><span class="s1">setOnClickListener</span><span class="s2">(</span><span class="s1">v -&gt; </span><span class="s2">{</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">bgMusic </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                <span class="s1">bgMusic</span><span class="s2">.</span><span class="s1">pause</span><span class="s2">();</span>
+            <span class="s2">}</span>
+            <span class="s1">playSound</span><span class="s2">();</span>
+
+            <span class="s1">String playerName </span><span class="s2">= </span><span class="s1">playerNameEditText</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">toString</span><span class="s2">();</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">playerName</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()) {</span>
+                <span class="s1">playerName </span><span class="s2">= </span><span class="s3">&quot;Player&quot;</span><span class="s2">;</span>
+            <span class="s2">}</span>
+
+            <span class="s1">Intent intent </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Intent</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">LoadingActivity</span><span class="s2">.</span><span class="s0">class</span><span class="s2">);</span>
+            <span class="s1">intent</span><span class="s2">.</span><span class="s1">putExtra</span><span class="s2">(</span><span class="s3">&quot;playerName&quot;</span><span class="s2">, </span><span class="s1">playerName</span><span class="s2">);</span>
+            <span class="s1">startActivity</span><span class="s2">(</span><span class="s1">intent</span><span class="s2">);</span>
+        <span class="s2">});</span>
+
+        <span class="s1">btnLeaderboard</span><span class="s2">.</span><span class="s1">setOnClickListener</span><span class="s2">(</span><span class="s1">v -&gt; </span><span class="s2">{</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">bgMusic </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                <span class="s1">bgMusic</span><span class="s2">.</span><span class="s1">pause</span><span class="s2">();</span>
+            <span class="s2">}</span>
+            <span class="s1">playSound</span><span class="s2">();</span>
+            <span class="s1">startActivity</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Intent</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">LeaderboardActivity</span><span class="s2">.</span><span class="s0">class</span><span class="s2">));</span>
+        <span class="s2">});</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">playSound</span><span class="s2">() {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">buttonSound </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">buttonSound</span><span class="s2">.</span><span class="s1">start</span><span class="s2">();</span>
+            <span class="s1">buttonSound</span><span class="s2">.</span><span class="s1">setOnCompletionListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">MediaPlayer</span><span class="s2">.</span><span class="s1">OnCompletionListener</span><span class="s2">() {</span>
+                <span class="s1">@Override</span>
+                <span class="s0">public void </span><span class="s1">onCompletion</span><span class="s2">(</span><span class="s1">MediaPlayer mp</span><span class="s2">) {</span>
+                    <span class="s1">mp</span><span class="s2">.</span><span class="s1">seekTo</span><span class="s2">(</span><span class="s4">0</span><span class="s2">);</span>
+                <span class="s2">}</span>
+            <span class="s2">});</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onResume</span><span class="s2">() {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onResume</span><span class="s2">();</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">bgMusic </span><span class="s2">!= </span><span class="s0">null </span><span class="s2">&amp;&amp; !</span><span class="s1">bgMusic</span><span class="s2">.</span><span class="s1">isPlaying</span><span class="s2">()) {</span>
+            <span class="s1">bgMusic</span><span class="s2">.</span><span class="s1">start</span><span class="s2">();</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onPause</span><span class="s2">() {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onPause</span><span class="s2">();</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">bgMusic </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">bgMusic</span><span class="s2">.</span><span class="s1">pause</span><span class="s2">();</span>
+        <span class="s2">}</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">buttonSound </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">buttonSound</span><span class="s2">.</span><span class="s1">pause</span><span class="s2">();</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onDestroy</span><span class="s2">() {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onDestroy</span><span class="s2">();</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">bgMusic </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">bgMusic</span><span class="s2">.</span><span class="s1">release</span><span class="s2">();</span>
+            <span class="s1">bgMusic </span><span class="s2">= </span><span class="s0">null</span><span class="s2">;</span>
+        <span class="s2">}</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">buttonSound </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">buttonSound</span><span class="s2">.</span><span class="s1">release</span><span class="s2">();</span>
+            <span class="s1">buttonSound </span><span class="s2">= </span><span class="s0">null</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
