@@ -1,143 +1,318 @@
-//app\src\main\java\com\angonogiants\application\LeaderboardActivity.java
+
 package com.angonogiants.application;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull; // Added this import
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LeaderboardActivity extends AppCompatActivity {
 
-    private MediaPlayer ldboardmusic;
-    private ImageButton mainMenuLButton;
-    private MediaPlayer buttonSound;
+    private static final String TAG = "LeaderboardActivity";
+
     private ListView leaderboardListView;
-    private List<LeaderboardEntry> leaderboardList;
-    private LeaderboardAdapter leaderboardAdapter;
+    private ImageButton mainMenuButton;
+    private TextView emptyMessage;
+
+    private final List<LeaderboardEntry> leaderboardList =
+            new ArrayList<>();
+
+    private LeaderboardAdapter adapter;
+
+    private DatabaseReference leaderboardReference;
+    private ValueEventListener leaderboardListener;
+
+    private MediaPlayer backgroundMusic;
+    private MediaPlayer buttonSound;
+
+    private boolean navigating = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_leaderboard);
 
-        leaderboardListView = findViewById(R.id.leaderboardListView);
-        mainMenuLButton = findViewById(R.id.mainMenuLButton);
-
-        // Initialize list and adapter immediately to avoid null references
-        leaderboardList = new ArrayList<>();
-        leaderboardAdapter = new LeaderboardAdapter(this, leaderboardList);
-        leaderboardListView.setAdapter(leaderboardAdapter);
-
-        buttonSound = MediaPlayer.create(this, R.raw.buttonsound);
-        if (buttonSound != null) {
-            buttonSound.setOnCompletionListener(mp -> mp.seekTo(0));
-        }
-
-        mainMenuLButton.setOnClickListener(v -> {
-            playSound();
-            AnimationDrawable animationDrawable = (AnimationDrawable) mainMenuLButton.getBackground();
-            if (animationDrawable != null) {
-                animationDrawable.start();
-            }
-            startActivity(new Intent(LeaderboardActivity.this, MainActivity.class));
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-            finish();
-        });
-
-        playBackgroundMusic();
-
-        // Fetch data from Firebase
-        attachFirebaseListener();
+        initializeViews();
+        initializeLeaderboard();
+        initializeFirebase();
+        initializeAudio();
+        setupNavigation();
     }
 
-    private void attachFirebaseListener() {
-        // ADD YOUR URL HERE just like in GameActivity
-        String databaseUrl = "https://angonogiants-default-rtdb.asia-southeast1.firebasedatabase.app/";
+    private void initializeViews() {
+        leaderboardListView =
+                findViewById(R.id.leaderboardListView);
 
-        // Pass the URL into getInstance()
-        FirebaseDatabase database = FirebaseDatabase.getInstance(databaseUrl);
-        DatabaseReference leaderboardRef = database.getReference("leaderboard");
+        mainMenuButton =
+                findViewById(R.id.mainMenuLButton);
 
-        leaderboardRef.addValueEventListener(new ValueEventListener() {
+        emptyMessage =
+                findViewById(R.id.emptyLeaderboardText);
+    }
+
+    private void initializeLeaderboard() {
+        adapter = new LeaderboardAdapter(
+                this,
+                leaderboardList
+        );
+
+        leaderboardListView.setAdapter(adapter);
+
+        if (emptyMessage != null) {
+            leaderboardListView.setEmptyView(emptyMessage);
+        }
+    }
+
+    private void initializeFirebase() {
+        leaderboardReference =
+                new LeaderboardRepository()
+                        .getLeaderboardReference();
+    }
+
+    private void attachLeaderboardListener() {
+        if (leaderboardListener != null) return;
+
+        leaderboardListener = new ValueEventListener() {
+
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                leaderboardList.clear();
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    // Ensure your LeaderboardEntry class matches the Firebase keys exactly
-                    LeaderboardEntry entry = data.getValue(LeaderboardEntry.class);
-                    if (entry != null) {
-                        leaderboardList.add(entry);
+            public void onDataChange(
+                    @NonNull DataSnapshot snapshot
+            ) {
+                List<LeaderboardEntry> results =
+                        new ArrayList<>();
+
+                for (DataSnapshot child :
+                        snapshot.getChildren()) {
+
+                    try {
+                        PlayerScore score =
+                                child.getValue(PlayerScore.class);
+
+                        if (score == null) continue;
+
+                        results.add(
+                                new LeaderboardEntry(score)
+                        );
+
+                    } catch (RuntimeException error) {
+                        Log.w(
+                                TAG,
+                                "Invalid leaderboard entry",
+                                error
+                        );
                     }
                 }
 
-                // Sort by score descending
-                Collections.sort(leaderboardList, (a, b) -> Integer.compare(b.score, a.score));
+                // Higher level first.
+                // Higher score breaks level ties.
+                results.sort((a, b) -> {
+                    int levelComparison =
+                            Integer.compare(
+                                    b.highestLevel,
+                                    a.highestLevel
+                            );
 
-                // Refresh the UI
-                leaderboardAdapter.notifyDataSetChanged();
-                Log.d("LeaderboardDebug", "Data fetched! Total entries: " + leaderboardList.size());
+                    if (levelComparison != 0) {
+                        return levelComparison;
+                    }
+
+                    int scoreComparison =
+                            Integer.compare(
+                                    b.score,
+                                    a.score
+                            );
+
+                    if (scoreComparison != 0) {
+                        return scoreComparison;
+                    }
+
+                    String nameA = a.playerName == null
+                            ? ""
+                            : a.playerName;
+
+                    String nameB = b.playerName == null
+                            ? ""
+                            : b.playerName;
+
+                    return nameA.compareToIgnoreCase(nameB);
+                });
+
+                leaderboardList.clear();
+                leaderboardList.addAll(results);
+
+                adapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("LeaderboardActivity", "Firebase Error: " + error.getMessage());
+            public void onCancelled(
+                    @NonNull DatabaseError error
+            ) {
+                Log.e(
+                        TAG,
+                        "Could not load leaderboard",
+                        error.toException()
+                );
+
+                Toast.makeText(
+                        LeaderboardActivity.this,
+                        "Failed to load leaderboard.",
+                        Toast.LENGTH_SHORT
+                ).show();
             }
-        });
+        };
+
+        leaderboardReference.addValueEventListener(
+                leaderboardListener
+        );
     }
 
+    private void detachLeaderboardListener() {
+        if (leaderboardListener != null) {
+            leaderboardReference.removeEventListener(
+                    leaderboardListener
+            );
 
-    @SuppressLint("MissingSuperCall")
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            leaderboardListener = null;
+        }
+    }
+
+    private void initializeAudio() {
+        backgroundMusic = MediaPlayer.create(
+                this,
+                R.raw.leaderboardmuzic
+        );
+
+        if (backgroundMusic != null) {
+            backgroundMusic.setLooping(true);
+        }
+
+        buttonSound = MediaPlayer.create(
+                this,
+                R.raw.buttonsound
+        );
+    }
+
+    private void playMusic() {
+        if (backgroundMusic == null) return;
+
+        try {
+            if (!backgroundMusic.isPlaying()) {
+                backgroundMusic.start();
+            }
+        } catch (IllegalStateException error) {
+            Log.e(TAG, "Cannot play music", error);
+        }
+    }
+
+    private void pauseMusic() {
+        if (backgroundMusic == null) return;
+
+        try {
+            if (backgroundMusic.isPlaying()) {
+                backgroundMusic.pause();
+            }
+        } catch (IllegalStateException error) {
+            Log.e(TAG, "Cannot pause music", error);
+        }
+    }
+
+    private void setupNavigation() {
+        mainMenuButton.setOnClickListener(
+                v -> navigateToMainMenu()
+        );
+
+        getOnBackPressedDispatcher().addCallback(
+                this,
+                new OnBackPressedCallback(true) {
+                    @Override
+                    public void handleOnBackPressed() {
+                        navigateToMainMenu();
+                    }
+                }
+        );
+    }
+
+    private void navigateToMainMenu() {
+        if (navigating || isFinishing()) return;
+
+        navigating = true;
+        mainMenuButton.setEnabled(false);
+
+        if (buttonSound != null) {
+            try {
+                buttonSound.seekTo(0);
+                buttonSound.start();
+            } catch (IllegalStateException ignored) {
+            }
+        }
+
+        Drawable drawable =
+                mainMenuButton.getBackground();
+
+        if (drawable instanceof AnimationDrawable) {
+            ((AnimationDrawable) drawable).start();
+        }
+
+        startActivity(
+                new Intent(this, MainActivity.class)
+        );
+
+        overridePendingTransition(
+                R.anim.fade_in,
+                R.anim.fade_out
+        );
+
         finish();
     }
 
-    private void playSound() {
-        if (buttonSound != null) {
-            buttonSound.start();
-        }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        attachLeaderboardListener();
+        playMusic();
     }
 
-    private void playBackgroundMusic() {
-        if (ldboardmusic == null) {
-            ldboardmusic = MediaPlayer.create(this, R.raw.leaderboardmuzic);
-            if (ldboardmusic != null) {
-                ldboardmusic.setLooping(true);
-                ldboardmusic.start();
-            }
-        }
+    @Override
+    protected void onStop() {
+        detachLeaderboardListener();
+        pauseMusic();
+        super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-        if (ldboardmusic != null) {
-            ldboardmusic.release();
-            ldboardmusic = null;
+        detachLeaderboardListener();
+
+        if (backgroundMusic != null) {
+            backgroundMusic.release();
+            backgroundMusic = null;
         }
+
         if (buttonSound != null) {
             buttonSound.release();
             buttonSound = null;
         }
+
+        super.onDestroy();
     }
 }

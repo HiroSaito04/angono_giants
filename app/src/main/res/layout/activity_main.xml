@@ -1,89 +1,136 @@
+
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context=".MainActivity">
 
+    <!-- Animated menu background -->
     <ImageView
         android:id="@+id/backgroundGif"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:src="@drawable/mainmenubg00"
         android:scaleType="fitXY"
-        android:adjustViewBounds="true" />
-    <LinearLayout
-        android:id="@+id/midLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical"
+        android:contentDescription="@null" />
+
+    <!-- Account sign out -->
+    <Button
+        android:id="@+id/btnSignOut"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="12dp"
+        android:text="Sign Out"
+        android:textSize="12sp"
+        android:textColor="#EFD5BD"
+        android:backgroundTint="#49352B"
+        android:visibility="invisible" />
+
+    <!-- Saved level -->
+    <TextView
+        android:id="@+id/levelStatusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:text="Loading account..."
+        android:textColor="#FFD700"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/start"
+        android:shadowColor="#000000"
+        android:shadowRadius="3"
         android:gravity="center"
-        android:paddingBottom="20dp">
-    <ImageView
-        android:id="@+id/btnLeaderboard"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_gravity="right"
-        android:scaleType="fitXY"
-        android:contentDescription="Open Leaderboard"
-        android:layout_marginTop="10dp" />
+        android:visibility="invisible" />
 
-    </LinearLayout>
+    <!-- Leaderboard -->
+    <FrameLayout
+        android:id="@+id/midLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="12dp"
+        android:visibility="invisible">
 
+        <ImageView
+            android:id="@+id/btnLeaderboard"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="fitXY"
+            android:clickable="true"
+            android:contentDescription="Open Leaderboard" />
+
+    </FrameLayout>
+
+    <!-- Player account and Start -->
     <LinearLayout
         android:id="@+id/bottomLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:paddingBottom="50dp">
+        android:visibility="invisible">
 
         <EditText
             android:id="@+id/playerNameEditText"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="50dp"
-            android:hint="Enter Your Name"
+            android:hint="Loading Player..."
             android:gravity="center"
             android:padding="10dp"
-            android:textColorHint="#EFD5BD"
-            android:background="#5C000000"
             android:fontFamily="@font/start"
             android:textColor="#EFD5BD"
-            android:imeOptions="actionDone"  android:singleLine="true" />
+            android:textColorHint="#EFD5BD"
+            android:background="#5C000000"
+            android:inputType="textPersonName"
+            android:singleLine="true"
+            android:focusable="false"
+            android:cursorVisible="false"
+            android:clickable="false"
+            android:importantForAutofill="no" />
 
         <Button
             android:id="@+id/btnStart"
             android:layout_width="175dp"
             android:layout_height="75dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/start_button_animation"
-            android:contentDescription="Start Game"
-            android:layout_marginTop="10dp" />
+            android:contentDescription="Continue Game"
+            android:enabled="false" />
 
     </LinearLayout>
 
-
-    <LinearLayout
+    <!-- About Us -->
+    <FrameLayout
         android:id="@+id/AbtusLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingBottom="100dp"
-        android:gravity="bottom">
-        <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="left|bottom"
-            android:contentDescription="Open About Us">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="100dp"
+        android:visibility="invisible">
 
-            <ImageView
-                android:id="@+id/btnAboutUs"
-                android:layout_width="70dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/about_button"
-                android:contentDescription="Open About Us" />
-        </LinearLayout>
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/btnAboutUs"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/about_button"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            android:contentDescription="Open About Us" />
+
+    </FrameLayout>
 
 </RelativeLayout>

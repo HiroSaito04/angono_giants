@@ -4,14 +4,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Network permissions for Firebase -->
+    <!-- Firebase and network access -->
     <uses-permission
         android:name="android.permission.INTERNET" />
 
     <uses-permission
         android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <!-- Vibration for game feedback -->
+    <!-- Game vibration feedback -->
     <uses-permission
         android:name="android.permission.VIBRATE" />
 
@@ -26,7 +26,7 @@
         android:theme="@style/Theme.AngonoGiants"
         tools:targetApi="31">
 
-        <!-- Splash Screen / Launcher -->
+        <!-- App launcher -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -43,6 +43,13 @@
 
         </activity>
 
+        <!-- Firebase Authentication -->
+        <activity
+            android:name=".AuthActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
         <!-- Main Menu -->
         <activity
             android:name=".MainActivity"
@@ -50,19 +57,19 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Loading Screen -->
+        <!-- Video Loading Screen -->
         <activity
             android:name=".LoadingActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
-        <!-- Gameplay -->
+        <!-- Infinite-Level Gameplay -->
         <activity
             android:name=".GameActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
-        <!-- Leaderboard -->
+        <!-- Firebase Leaderboard -->
         <activity
             android:name=".LeaderboardActivity"
             android:exported="false"

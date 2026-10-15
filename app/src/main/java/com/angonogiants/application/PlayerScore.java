@@ -1,20 +1,34 @@
-//app\src\main\java\com\angonogiants\application\PlayerScore.java
+
 package com.angonogiants.application;
 
-// This class acts as the blueprint for the data sent to Firebase
 public class PlayerScore {
+
+    public String uid;
     public String playerName;
+
+    public int highestLevel;
     public int score;
-    public String timePlayed;
     public int wavesSurvived;
 
-    // Required empty constructor for Firebase DataSnapshot.getValue()
-    public PlayerScore() {}
+    public String timePlayed;
 
-    public PlayerScore(String playerName, int score, String timePlayed, int wavesSurvived) {
+    // Required by Firebase.
+    public PlayerScore() {
+    }
+
+    public PlayerScore(
+            String uid,
+            String playerName,
+            int highestLevel,
+            int score,
+            int wavesSurvived,
+            String timePlayed
+    ) {
+        this.uid = uid;
         this.playerName = playerName;
+        this.highestLevel = highestLevel;
         this.score = score;
-        this.timePlayed = timePlayed;
         this.wavesSurvived = wavesSurvived;
+        this.timePlayed = timePlayed;
     }
 }

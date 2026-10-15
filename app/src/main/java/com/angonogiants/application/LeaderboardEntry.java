@@ -1,19 +1,21 @@
-//app\src\main\java\com\angonogiants\application\LeaderboardEntry.java
+
 package com.angonogiants.application;
 
-public class LeaderboardEntry {
-    public String playerName;
-    public int score;
-    public String timePlayed;
-    public int wavesSurvived;
+public class LeaderboardEntry extends PlayerScore {
 
-    // MANDATORY: Empty constructor for Firebase
-    public LeaderboardEntry() {}
+    // Required for Firebase compatibility.
+    public LeaderboardEntry() {
+        super();
+    }
 
-    public LeaderboardEntry(String playerName, int score, String timePlayed, int wavesSurvived) {
-        this.playerName = playerName;
-        this.score = score;
-        this.timePlayed = timePlayed;
-        this.wavesSurvived = wavesSurvived;
+    public LeaderboardEntry(PlayerScore score) {
+        super(
+                score.uid,
+                score.playerName,
+                score.highestLevel,
+                score.score,
+                score.wavesSurvived,
+                score.timePlayed
+        );
     }
 }

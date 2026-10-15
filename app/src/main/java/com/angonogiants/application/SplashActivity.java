@@ -1,4 +1,3 @@
-//app\src\main\java\com\angonogiants\application\SplashActivity.java
 
 package com.angonogiants.application;
 
@@ -9,24 +8,54 @@ import android.os.Looper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SplashActivity extends AppCompatActivity {
 
-    // Display the splash screen for 1 second
     private static final long SPLASH_DURATION = 1000L;
 
     private final Handler handler =
             new Handler(Looper.getMainLooper());
 
-    private final Runnable openMainMenu = () -> {
-        if (isFinishing() || isDestroyed()) {
+    private boolean navigated = false;
+
+    private final Runnable navigationTask =
+            this::openNextScreen;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        handler.removeCallbacks(navigationTask);
+
+        if (!navigated) {
+            handler.postDelayed(
+                    navigationTask,
+                    SPLASH_DURATION
+            );
+        }
+    }
+
+    private void openNextScreen() {
+        if (navigated || isFinishing() || isDestroyed()) {
             return;
         }
 
-        Intent intent = new Intent(
-                SplashActivity.this,
-                MainActivity.class
-        );
+        navigated = true;
 
+        Class<?> destination =
+                FirebaseAuth.getInstance()
+                        .getCurrentUser() != null
+                        ? MainActivity.class
+                        : AuthActivity.class;
+
+        Intent intent = new Intent(this, destination);
         startActivity(intent);
 
         overridePendingTransition(
@@ -35,23 +64,17 @@ public class SplashActivity extends AppCompatActivity {
         );
 
         finish();
-    };
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_splash);
-
-        handler.postDelayed(
-                openMainMenu,
-                SPLASH_DURATION
-        );
+    protected void onPause() {
+        handler.removeCallbacks(navigationTask);
+        super.onPause();
     }
 
     @Override
     protected void onDestroy() {
-        handler.removeCallbacks(openMainMenu);
+        handler.removeCallbacks(navigationTask);
         super.onDestroy();
     }
 }

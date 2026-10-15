@@ -1,85 +1,110 @@
+
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:minHeight="130dp"
     android:orientation="horizontal"
+    android:gravity="center_vertical"
     android:padding="10dp">
 
-    <!-- Medal Container (Visible only for Top 3) -->
-    <LinearLayout
+    <!-- Top 3 medal -->
+    <FrameLayout
         android:id="@+id/medalContainer"
-        android:layout_width="100dp"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:visibility="gone"> <!-- Hidden for non-placers -->
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/medalgold"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/medal1gold"
             android:visibility="gone"
-            android:src="@drawable/medal1gold"/>
+            android:contentDescription="First place" />
 
         <ImageView
             android:id="@+id/medalzilver"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/medal2silver"
             android:visibility="gone"
-            android:src="@drawable/medal2silver"/>
+            android:contentDescription="Second place" />
 
         <ImageView
             android:id="@+id/medalbronze"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/medal3bronze"
             android:visibility="gone"
-            android:src="@drawable/medal3bronze"/>
-    </LinearLayout>
+            android:contentDescription="Third place" />
 
-    <!-- Player Info Container -->
+    </FrameLayout>
+
+    <!-- Player details -->
     <LinearLayout
         android:id="@+id/playerInfoContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center"> <!-- Center text for non-placers -->
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/playerName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Player Name"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:fontFamily="@font/slkscr"
-            android:textColor="#81645C"/>
+            android:text="Player"
+            android:textColor="#81645C"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:maxLines="2" />
+
+        <TextView
+            android:id="@+id/highestLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/slkscr"
+            android:text="Highest Level: 1"
+            android:textColor="#9A632D"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/playerScore"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Score"
-            android:textSize="16sp"
+            android:layout_marginTop="3dp"
             android:fontFamily="@font/slkscr"
-            android:textColor="#81645C"/>
+            android:text="Best Score: 0"
+            android:textColor="#81645C"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/wavesSurvived"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Waves Survived"
-            android:textSize="16sp"
             android:fontFamily="@font/slkscr"
-            android:textColor="#81645C"/>
+            android:text="Waves: 0"
+            android:textColor="#81645C"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/timePlayed"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Time Played"
-            android:textSize="16sp"
             android:fontFamily="@font/slkscr"
-            android:textColor="#81645C"/>
+            android:text="Time: 0 seconds"
+            android:textColor="#81645C"
+            android:textSize="16sp" />
+
     </LinearLayout>
 
 </LinearLayout>
