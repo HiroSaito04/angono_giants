@@ -1,0 +1,168 @@
+<html>
+<head>
+<title>GameView.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #7a7e85;}
+.s5 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+GameView.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">angonogiants</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Context</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">graphics</span><span class="s2">.</span><span class="s1">Bitmap</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">graphics</span><span class="s2">.</span><span class="s1">BitmapFactory</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">graphics</span><span class="s2">.</span><span class="s1">Canvas</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">graphics</span><span class="s2">.</span><span class="s1">Color</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">graphics</span><span class="s2">.</span><span class="s1">Paint</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">AttributeSet</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">MotionEvent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Toast</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Iterator</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Random</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">GameView </span><span class="s0">extends </span><span class="s1">View </span><span class="s2">{</span>
+
+    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Enemy</span><span class="s2">&gt; </span><span class="s1">enemies </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+    <span class="s0">private </span><span class="s1">Paint enemyPaint</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">Random random </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Random</span><span class="s2">();</span>
+    <span class="s0">private int </span><span class="s1">screenWidth</span><span class="s2">, </span><span class="s1">screenHeight</span><span class="s2">;</span>
+    <span class="s0">private int </span><span class="s1">dotsReachedMiddle </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+    <span class="s0">private final int </span><span class="s1">maxDotsToEndGame </span><span class="s2">= </span><span class="s3">3</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">Bitmap backgroundBitmap</span><span class="s2">;</span>
+    <span class="s0">private boolean </span><span class="s1">gameOver </span><span class="s2">= </span><span class="s0">false</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">GameView</span><span class="s2">(</span><span class="s1">Context context</span><span class="s2">, </span><span class="s1">AttributeSet attrs</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">(</span><span class="s1">context</span><span class="s2">, </span><span class="s1">attrs</span><span class="s2">);</span>
+        <span class="s1">init</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">init</span><span class="s2">() {</span>
+        <span class="s1">enemyPaint </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Paint</span><span class="s2">();</span>
+        <span class="s1">enemyPaint</span><span class="s2">.</span><span class="s1">setColor</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLACK</span><span class="s2">);</span>
+        <span class="s1">enemyPaint</span><span class="s2">.</span><span class="s1">setAntiAlias</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+
+        <span class="s1">backgroundBitmap </span><span class="s2">= </span><span class="s1">BitmapFactory</span><span class="s2">.</span><span class="s1">decodeResource</span><span class="s2">(</span><span class="s1">getResources</span><span class="s2">(), </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">gmplay</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onSizeChanged</span><span class="s2">(</span><span class="s0">int </span><span class="s1">w</span><span class="s2">, </span><span class="s0">int </span><span class="s1">h</span><span class="s2">, </span><span class="s0">int </span><span class="s1">oldw</span><span class="s2">, </span><span class="s0">int </span><span class="s1">oldh</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onSizeChanged</span><span class="s2">(</span><span class="s1">w</span><span class="s2">, </span><span class="s1">h</span><span class="s2">, </span><span class="s1">oldw</span><span class="s2">, </span><span class="s1">oldh</span><span class="s2">);</span>
+        <span class="s1">screenWidth </span><span class="s2">= </span><span class="s1">w</span><span class="s2">;</span>
+        <span class="s1">screenHeight </span><span class="s2">= </span><span class="s1">h</span><span class="s2">;</span>
+        <span class="s1">backgroundBitmap </span><span class="s2">= </span><span class="s1">Bitmap</span><span class="s2">.</span><span class="s1">createScaledBitmap</span><span class="s2">(</span><span class="s1">backgroundBitmap</span><span class="s2">, </span><span class="s1">w</span><span class="s2">, </span><span class="s1">h</span><span class="s2">, </span><span class="s0">true</span><span class="s2">);</span>
+        <span class="s1">spawnEnemies</span><span class="s2">(); </span><span class="s4">// Spawn dots after getting screen size</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">spawnEnemies</span><span class="s2">() {</span>
+        <span class="s1">enemies</span><span class="s2">.</span><span class="s1">clear</span><span class="s2">();</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s3">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s3">30</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s0">float </span><span class="s1">x </span><span class="s2">= </span><span class="s1">random</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">(</span><span class="s1">screenWidth</span><span class="s2">);</span>
+            <span class="s0">float </span><span class="s1">y </span><span class="s2">= (</span><span class="s1">i </span><span class="s2">% </span><span class="s3">2 </span><span class="s2">== </span><span class="s3">0</span><span class="s2">) ? </span><span class="s3">0 </span><span class="s2">: </span><span class="s1">screenHeight</span><span class="s2">; </span><span class="s4">// Top or Bottom spawn</span>
+            <span class="s1">enemies</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Enemy</span><span class="s2">(</span><span class="s1">x</span><span class="s2">, </span><span class="s1">y</span><span class="s2">));</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onDraw</span><span class="s2">(</span><span class="s1">Canvas canvas</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onDraw</span><span class="s2">(</span><span class="s1">canvas</span><span class="s2">);</span>
+
+        <span class="s4">// Draw background</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">backgroundBitmap </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">canvas</span><span class="s2">.</span><span class="s1">drawBitmap</span><span class="s2">(</span><span class="s1">backgroundBitmap</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s0">null</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s4">// Draw dots</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">Enemy enemy </span><span class="s2">: </span><span class="s1">enemies</span><span class="s2">) {</span>
+            <span class="s1">canvas</span><span class="s2">.</span><span class="s1">drawCircle</span><span class="s2">(</span><span class="s1">enemy</span><span class="s2">.</span><span class="s1">x</span><span class="s2">, </span><span class="s1">enemy</span><span class="s2">.</span><span class="s1">y</span><span class="s2">, </span><span class="s3">30</span><span class="s2">, </span><span class="s1">enemyPaint</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s4">// Draw game over message</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">gameOver</span><span class="s2">) {</span>
+            <span class="s1">Paint gameOverPaint </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Paint</span><span class="s2">();</span>
+            <span class="s1">gameOverPaint</span><span class="s2">.</span><span class="s1">setColor</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">RED</span><span class="s2">);</span>
+            <span class="s1">gameOverPaint</span><span class="s2">.</span><span class="s1">setTextSize</span><span class="s2">(</span><span class="s3">100</span><span class="s2">);</span>
+            <span class="s1">canvas</span><span class="s2">.</span><span class="s1">drawText</span><span class="s2">(</span><span class="s5">&quot;Game Over!&quot;</span><span class="s2">, </span><span class="s1">screenWidth </span><span class="s2">/ </span><span class="s3">4f</span><span class="s2">, </span><span class="s1">screenHeight </span><span class="s2">/ </span><span class="s3">2f</span><span class="s2">, </span><span class="s1">gameOverPaint</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">update</span><span class="s2">() {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">gameOver</span><span class="s2">) </span><span class="s0">return</span><span class="s2">;</span>
+
+        <span class="s1">Iterator</span><span class="s2">&lt;</span><span class="s1">Enemy</span><span class="s2">&gt; </span><span class="s1">iterator </span><span class="s2">= </span><span class="s1">enemies</span><span class="s2">.</span><span class="s1">iterator</span><span class="s2">();</span>
+        <span class="s0">while </span><span class="s2">(</span><span class="s1">iterator</span><span class="s2">.</span><span class="s1">hasNext</span><span class="s2">()) {</span>
+            <span class="s1">Enemy enemy </span><span class="s2">= </span><span class="s1">iterator</span><span class="s2">.</span><span class="s1">next</span><span class="s2">();</span>
+            <span class="s1">enemy</span><span class="s2">.</span><span class="s1">move</span><span class="s2">();</span>
+
+            <span class="s4">// Check if enemy reaches the middle</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">enemy</span><span class="s2">.</span><span class="s1">y </span><span class="s2">&gt;= </span><span class="s1">screenHeight </span><span class="s2">/ </span><span class="s3">2 </span><span class="s2">- </span><span class="s3">30 </span><span class="s2">&amp;&amp; </span><span class="s1">enemy</span><span class="s2">.</span><span class="s1">y </span><span class="s2">&lt;= </span><span class="s1">screenHeight </span><span class="s2">/ </span><span class="s3">2 </span><span class="s2">+ </span><span class="s3">30</span><span class="s2">) {</span>
+                <span class="s1">dotsReachedMiddle</span><span class="s2">++;</span>
+                <span class="s1">iterator</span><span class="s2">.</span><span class="s1">remove</span><span class="s2">(); </span><span class="s4">// Remove dot that reached the middle</span>
+
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">dotsReachedMiddle </span><span class="s2">&gt;= </span><span class="s1">maxDotsToEndGame</span><span class="s2">) {</span>
+                    <span class="s1">gameOver </span><span class="s2">= </span><span class="s0">true</span><span class="s2">;</span>
+                    <span class="s1">postInvalidate</span><span class="s2">();</span>
+                    <span class="s0">return</span><span class="s2">;</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s1">postInvalidate</span><span class="s2">(); </span><span class="s4">// Redraw screen</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public boolean </span><span class="s1">onTouchEvent</span><span class="s2">(</span><span class="s1">MotionEvent event</span><span class="s2">) {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">gameOver</span><span class="s2">) </span><span class="s0">return false</span><span class="s2">;</span>
+
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">event</span><span class="s2">.</span><span class="s1">getAction</span><span class="s2">() == </span><span class="s1">MotionEvent</span><span class="s2">.</span><span class="s1">ACTION_DOWN</span><span class="s2">) {</span>
+            <span class="s0">float </span><span class="s1">x </span><span class="s2">= </span><span class="s1">event</span><span class="s2">.</span><span class="s1">getX</span><span class="s2">();</span>
+            <span class="s0">float </span><span class="s1">y </span><span class="s2">= </span><span class="s1">event</span><span class="s2">.</span><span class="s1">getY</span><span class="s2">();</span>
+
+            <span class="s1">Iterator</span><span class="s2">&lt;</span><span class="s1">Enemy</span><span class="s2">&gt; </span><span class="s1">iterator </span><span class="s2">= </span><span class="s1">enemies</span><span class="s2">.</span><span class="s1">iterator</span><span class="s2">();</span>
+            <span class="s0">while </span><span class="s2">(</span><span class="s1">iterator</span><span class="s2">.</span><span class="s1">hasNext</span><span class="s2">()) {</span>
+                <span class="s1">Enemy enemy </span><span class="s2">= </span><span class="s1">iterator</span><span class="s2">.</span><span class="s1">next</span><span class="s2">();</span>
+                <span class="s0">float </span><span class="s1">distance </span><span class="s2">= (</span><span class="s0">float</span><span class="s2">) </span><span class="s1">Math</span><span class="s2">.</span><span class="s1">sqrt</span><span class="s2">(</span><span class="s1">Math</span><span class="s2">.</span><span class="s1">pow</span><span class="s2">(</span><span class="s1">x </span><span class="s2">- </span><span class="s1">enemy</span><span class="s2">.</span><span class="s1">x</span><span class="s2">, </span><span class="s3">2</span><span class="s2">) + </span><span class="s1">Math</span><span class="s2">.</span><span class="s1">pow</span><span class="s2">(</span><span class="s1">y </span><span class="s2">- </span><span class="s1">enemy</span><span class="s2">.</span><span class="s1">y</span><span class="s2">, </span><span class="s3">2</span><span class="s2">));</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">distance </span><span class="s2">&lt; </span><span class="s3">30</span><span class="s2">) {</span>
+                    <span class="s1">iterator</span><span class="s2">.</span><span class="s1">remove</span><span class="s2">(); </span><span class="s4">// Remove tapped dot</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+            <span class="s0">return true</span><span class="s2">;</span>
+        <span class="s2">}</span>
+        <span class="s0">return false</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public int </span><span class="s1">getScore</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s3">0</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private class </span><span class="s1">Enemy </span><span class="s2">{</span>
+        <span class="s0">float </span><span class="s1">x</span><span class="s2">, </span><span class="s1">y</span><span class="s2">;</span>
+        <span class="s0">float </span><span class="s1">speedY</span><span class="s2">;</span>
+
+        <span class="s0">public </span><span class="s1">Enemy</span><span class="s2">(</span><span class="s0">float </span><span class="s1">x</span><span class="s2">, </span><span class="s0">float </span><span class="s1">y</span><span class="s2">) {</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">x </span><span class="s2">= </span><span class="s1">x</span><span class="s2">;</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">y </span><span class="s2">= </span><span class="s1">y</span><span class="s2">;</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">speedY </span><span class="s2">= (</span><span class="s1">y </span><span class="s2">== </span><span class="s3">0</span><span class="s2">) ? </span><span class="s3">5 </span><span class="s2">: -</span><span class="s3">5</span><span class="s2">; </span><span class="s4">// Move downward if top, upward if bottom</span>
+        <span class="s2">}</span>
+
+        <span class="s0">public void </span><span class="s1">move</span><span class="s2">() {</span>
+            <span class="s1">y </span><span class="s2">+= </span><span class="s1">speedY</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
