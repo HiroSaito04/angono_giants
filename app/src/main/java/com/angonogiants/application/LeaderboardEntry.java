@@ -1,4 +1,5 @@
-package com.example.angonogiants;
+//app\src\main\java\com\angonogiants\application\LeaderboardEntry.java
+package com.angonogiants.application;
 
 public class LeaderboardEntry {
     public String playerName;

@@ -81,7 +81,7 @@
                 android:id="@+id/btnAboutUs"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/auboard"
+                android:background="@drawable/about_button"
                 android:contentDescription="Open About Us" />
         </LinearLayout>
     </LinearLayout>

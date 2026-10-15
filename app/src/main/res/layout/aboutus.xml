@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/auboardbg"
+    android:background="@drawable/about_background"
     tools:context=".AboutUsActivity">
 
     <LinearLayout
@@ -53,8 +53,7 @@
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/start"
                         android:lineSpacingExtra="4dp"
-                        android:text="Angono Giants was developed as an Entry for TechFiesta at National University. Created by INF232, inspired by the Higantes Festival.
-                        \n\n\nThe Higantes Festival is a local festival held annually In Angono, Rizal, Philippines, where hundreds of giant papier-mâché puppets are paraded, representing the common people's mockery of the bad hacienda owners of the past during Spanish colonial rule."
+                        android:text="Angono Giants was developed as an Entry for TechFiesta at National University. Created by INF232, inspired by the Higantes Festival.\n\n\nThe Higantes Festival is a local festival held annually In Angono, Rizal, Philippines, where hundreds of giant papier-mâché puppets are paraded, representing the common people's mockery of the bad hacienda owners of the past during Spanish colonial rule."
                         android:textAlignment="inherit"
                         android:textColor="#FFFFFF"
                         android:textSize="15sp" />
@@ -127,10 +126,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CONTRIBUTORS:
-                        \n\nMain Concept\n>INF232\n
-                        \nGame Assets Illustration Assist\n>Christy Yu
-                        \n>Jake Villacarlos"
+                        android:text="CONTRIBUTORS:\n\nMain Concept\n>INF232\n\nGame Assets Illustration Assist\n>Christy Yu\n>Jake Villacarlos"
                         android:textColor="#FFFFFF"
                         android:textSize="15sp"
                         android:fontFamily="@font/start"

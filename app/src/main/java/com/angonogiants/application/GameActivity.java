@@ -1,4 +1,5 @@
-package com.example.angonogiants;
+//app\src\main\java\com\angonogiants\application\GameActivity.java
+package com.angonogiants.application;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -17,14 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import android.media.MediaPlayer;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -79,13 +73,13 @@ public class GameActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_game);
 
-        ImageView grazzzetView = findViewById(R.id.tilelayerView);
+        ImageView grass_setView = findViewById(R.id.tilelayerView);
 
         Glide.with(this)
                 .asGif()
-                .load(R.drawable.tilelayer)
+                .load(R.drawable.tile_layer)
                 .diskCacheStrategy(DiskCacheStrategy.NONE) // Prevent caching issues
-                .into(grazzzetView);
+                .into(grass_setView);
 
         gameView = findViewById(R.id.gameView);
 
@@ -108,7 +102,7 @@ public class GameActivity extends AppCompatActivity {
 
         Glide.with(this)
                 .asGif()
-                .load(R.drawable.treelayer)
+                .load(R.drawable.tree_layer)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(treelayerView);
         scoreCounterTextView = findViewById(R.id.ScoreCounter);
@@ -132,7 +126,7 @@ public class GameActivity extends AppCompatActivity {
         if (gifSoundPlayer != null) {
             gifSoundPlayer.setOnCompletionListener(mp -> {
                 mp.release();
-                gifSoundPlayer = null; // ✅ Prevent memory leaks
+                gifSoundPlayer = null; //  Prevent memory leaks
             });
 
             gifSoundPlayer.start();
@@ -270,7 +264,7 @@ public class GameActivity extends AppCompatActivity {
             lowHealthMusicPlayer = null;
             isLowHealthMusicPlaying = false;
 
-            // ✅ Restart background music HERE
+            //  Restart background music HERE
             startBackgroundMusic2(); // Use the non-delayed version to avoid a gap
         }
     }
@@ -427,7 +421,7 @@ public class GameActivity extends AppCompatActivity {
         stopLostFinalScoreMusic(); // Stop any previous instance
         if (lostFinalScoreMusicPlayer == null) {
             lostFinalScoreMusicPlayer = MediaPlayer.create(this, R.raw.loztfinalzcoremuzic);
-            lostFinalScoreMusicPlayer.setLooping(true); // ✅ Loop continuously
+            lostFinalScoreMusicPlayer.setLooping(true); //  Loop continuously
         }
         lostFinalScoreMusicPlayer.start();
     }
@@ -469,7 +463,7 @@ public class GameActivity extends AppCompatActivity {
             timerTextView.setVisibility(View.GONE);
             scoreCounterTextView.setVisibility(View.GONE);
             waveCounterTextView.setVisibility(View.GONE);
-            findViewById(R.id.zwordIcon).setVisibility(View.GONE);
+            findViewById(R.id.swordIcon).setVisibility(View.GONE);
             findViewById(R.id.timerIcon).setVisibility(View.GONE);
             findViewById(R.id.btnPauseResume).setVisibility(View.GONE);
             if (gameOverImage != null) {
@@ -493,7 +487,7 @@ public class GameActivity extends AppCompatActivity {
                         finalScoreContainer.setVisibility(View.VISIBLE);
                     }
 
-// ✅ Play the lost final score music
+//  Play the lost final score music
                     playLostFinalScoreMusic();
                     updateFinalScore();
                 }, 5000);
@@ -523,7 +517,7 @@ public class GameActivity extends AppCompatActivity {
         stopWonFinalScoreMusic(); // Stop any previous instance
         if (wonFinalScoreMusicPlayer == null) {
             wonFinalScoreMusicPlayer = MediaPlayer.create(this, R.raw.wonfinalzcoremuzic);
-            wonFinalScoreMusicPlayer.setLooping(true); // ✅ Loop continuously
+            wonFinalScoreMusicPlayer.setLooping(true); //  Loop continuously
         }
         wonFinalScoreMusicPlayer.start();
     }
@@ -546,7 +540,7 @@ public class GameActivity extends AppCompatActivity {
 // Stop Low Health Music - check the flag
             stopLowHealthMusic();
 
-// ✅ Clear all enemies immediately
+//  Clear all enemies immediately
             runOnUiThread(() -> gameView.clearAllEnemies());
 
             String playerName = getIntent().getStringExtra("PLAYER_NAME"); // Or "" if you have a default
@@ -561,11 +555,11 @@ public class GameActivity extends AppCompatActivity {
                 timerTextView.setVisibility(View.GONE);
                 scoreCounterTextView.setVisibility(View.GONE);
                 waveCounterTextView.setVisibility(View.GONE);
-                findViewById(R.id.zwordIcon).setVisibility(View.GONE);
+                findViewById(R.id.swordIcon).setVisibility(View.GONE);
                 findViewById(R.id.timerIcon).setVisibility(View.GONE);
                 findViewById(R.id.btnPauseResume).setVisibility(View.GONE);
 
-                Glide.with(this).asGif().load(R.drawable.gamewonthanks).into(gameThanksImage);
+                Glide.with(this).asGif().load(R.drawable.gamewonthanks_background).into(gameThanksImage);
                 View finalScoreContainer = findViewById(R.id.finalScoreContainer);
                 if (gameThanksImage != null) {
                     gameThanksImage.setVisibility(View.VISIBLE);
@@ -613,18 +607,18 @@ public class GameActivity extends AppCompatActivity {
         TextView finalScoreWave = findViewById(R.id.finalwaveTV);
         int scoreCount = gameView.getscoreCount();
 
-// ✅ Calculate raw time played (no "Time Played: " label)
+//  Calculate raw time played (no "Time Played: " label)
         int initialGameDurationSeconds = 300; // Game duration
         int timePlayedSeconds = initialGameDurationSeconds - seconds;
         int minutes = timePlayedSeconds / 60;
         int secs = timePlayedSeconds % 60;
         String formattedTime = String.format("%02d:%02d", minutes, secs);
 
-// ✅ Set raw values without labels
+//  Set raw values without labels
         finalScoreTimer.setText(formattedTime);
         finalScoreText.setText(String.valueOf(scoreCount));
 
-// ✅ Extract raw wave count
+//  Extract raw wave count
         String waveCountStr = waveCounterTextView.getText().toString().replace("Wave ", "");
         int waveCount = 0;
         try {
@@ -632,17 +626,17 @@ public class GameActivity extends AppCompatActivity {
         } catch (NumberFormatException e) {
             Log.e("GameDebug", "Error parsing wave count: " + e.getMessage());
         }
-        finalScoreWave.setText(String.valueOf(waveCount)); // ✅ Set wave count without "Wave: "
+        finalScoreWave.setText(String.valueOf(waveCount)); // Set wave count without "Wave: "
 
-// ✅ Set raw player name (no extra text)
+//  Set raw player name (no extra text)
         String playerName = getIntent().getStringExtra("PLAYER_NAME");
         playerNameText.setText((playerName != null && !playerName.isEmpty()) ? playerName : "Player");
 
-// ✅ Show Main Menu Button
+//  Show Main Menu Button
         ImageButton mainMenuButton = findViewById(R.id.mainMenuButton);
         mainMenuButton.setVisibility(View.VISIBLE);
 
-// ✅ Save the final score
+// Save the final score
         saveFinalScoreToFirebase(playerName, scoreCount, waveCount, gameWon);
         mainMenuButton.setOnClickListener(v -> {
             if (buttonSoundPlayer != null) {
@@ -652,7 +646,7 @@ public class GameActivity extends AppCompatActivity {
             if (animationDrawable != null) {
                 animationDrawable.start();
             }
-// ✅ Stop music before returning to main menu
+// Stop music before returning to main menu
             stopLostFinalScoreMusic();
             stopWonFinalScoreMusic();
 // Start the animation drawable
@@ -705,16 +699,16 @@ public class GameActivity extends AppCompatActivity {
 //                br.close();
 //            }
 //
-//// ✅ Add the updated or new entry
+//    Add the updated or new entry
 //            lines.add(playerName + "," + score + "," + timePlayed + "," + waveCount);
 //
-//// ✅ Sort entries by highest score first
+//   Sort entries by highest score first
 //            lines.sort((a, b) -> {
 //                int scoreA = Integer.parseInt(a.split(",")[1].trim());
 //                int scoreB = Integer.parseInt(b.split(",")[1].trim());
 //                return Integer.compare(scoreB, scoreA); // Descending order
 //            });
-//// ✅ Write the sorted leaderboard back to the file
+//// Write the sorted leaderboard back to the file
 //            FileWriter fw = new FileWriter(file, false); // Overwrite file
 //            for (String entry : lines) {
 //                fw.write(entry + "\n");
@@ -737,8 +731,8 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         stopGameWonThanksMusic();
-        stopWonFinalScoreMusic(); // ✅ Ensure the looping music stops
-        stopLostFinalScoreMusic(); // ✅ Ensure the looping music stops
+        stopWonFinalScoreMusic(); //  Ensure the looping music stops
+        stopLostFinalScoreMusic(); //  Ensure the looping music stops
         stopBackgroundMusic(); // Stop background music on destroy
 
         if (buttonSoundPlayer != null) {
@@ -752,7 +746,7 @@ public class GameActivity extends AppCompatActivity {
             isLowHealthMusicPlaying = false; // Reset the flag in onDestroy as well
         }
 
-        // ✅ Stop and release gifSoundPlayer to prevent muting issues
+        // Stop and release gifSoundPlayer to prevent muting issues
         if (gifSoundPlayer != null) {
             if (gifSoundPlayer.isPlaying()) {
                 gifSoundPlayer.stop(); // Ensure it stops before release

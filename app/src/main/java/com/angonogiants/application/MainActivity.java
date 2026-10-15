@@ -1,4 +1,5 @@
-package com.example.angonogiants;
+//app\src\main\java\com\angonogiants\application\MainActivity.java
+package com.angonogiants.application;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,7 +9,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         // 1. LOAD BACKGROUND GIF FIRST WITH LISTENER
         Glide.with(this)
                 .asGif()
-                .load(R.drawable.mainmenubg)
+                .load(R.drawable.mainmenubg01)
                 .listener(new RequestListener<com.bumptech.glide.load.resource.gif.GifDrawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<com.bumptech.glide.load.resource.gif.GifDrawable> target, boolean isFirstResource) {
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 .into(backgroundGif);
 
         // Load secondary GIFs normally
-        Glide.with(this).asGif().load(R.drawable.ldboard).into(btnLeaderboard);
+        Glide.with(this).asGif().load(R.drawable.leaderboard_button).into(btnLeaderboard);
 
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 

@@ -1,4 +1,5 @@
-package com.example.angonogiants;
+//app\src\main\java\com\angonogiants\application\LeaderboardActivity.java
+package com.angonogiants.application;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;

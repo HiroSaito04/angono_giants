@@ -1,19 +1,20 @@
+
 plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.example.angonogiants"
-    compileSdk = 34
+    namespace = "com.angonogiants.application"
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.angonogiants"
+        applicationId = "com.angonogiants.application"
         minSdk = 25
         targetSdk = 34
+
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -26,6 +27,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -33,23 +35,26 @@ android {
 }
 
 dependencies {
+    // Android UI
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(libs.firebase.database)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+
+    // Image and GIF loading
     implementation(libs.glide)
     annotationProcessor(libs.glide.compiler)
-// 1. The BOM (this controls all Firebase versions)
-    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
 
-    // 2. The Database library (NO version needed here, NO trailing colon, NO -ktx)
+    // Firebase Realtime Database
+    implementation(
+        platform("com.google.firebase:firebase-bom:33.1.0")
+    )
     implementation("com.google.firebase:firebase-database")
 
+    // Unit testing
+    testImplementation(libs.junit)
+
+    // Android instrumented testing
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 }
-
-apply(plugin = "com.google.gms.google-services")
-

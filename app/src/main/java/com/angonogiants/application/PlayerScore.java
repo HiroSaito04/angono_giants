@@ -1,4 +1,5 @@
-package com.example.angonogiants;
+//app\src\main\java\com\angonogiants\application\PlayerScore.java
+package com.angonogiants.application;
 
 // This class acts as the blueprint for the data sent to Firebase
 public class PlayerScore {

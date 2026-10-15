@@ -1,4 +1,5 @@
-package com.example.angonogiants;
+//app\src\main\java\com\angonogiants\application\GameView.java
+package com.angonogiants.application;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -100,8 +101,8 @@ public class GameView extends View {
     }
 
     public void clearAllEnemies() {
-        enemies.clear(); // ✅ Remove all enemies
-        postInvalidate(); // ✅ Force UI refresh
+        enemies.clear(); //  Remove all enemies
+        postInvalidate(); // Force UI refresh
         Log.d("GameDebug", "All enemies removed after winning.");
     }
 
@@ -152,7 +153,7 @@ public class GameView extends View {
         initSounds(context);
        vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE); // Initialize Vibrator
         enemySize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 90, getResources().getDisplayMetrics());
-        redGradientBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.redgradientpng);
+        redGradientBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.red_warning);
 
         // Convert 40dp to pixels
         horizontalMarginPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, HORIZONTAL_MARGIN_DP, getResources().getDisplayMetrics());
@@ -226,7 +227,7 @@ public class GameView extends View {
         soundCase1_4 = soundPool.load(context, R.raw.case1_4, 1);
         soundCase2_5 = soundPool.load(context, R.raw.case2_5, 1);
         soundCase6 = soundPool.load(context, R.raw.case6, 1);
-        // ✅ Load new sounds
+        //  Load new sounds
         loseLifeSound = soundPool.load(context, R.raw.lose_life, 1);
         gainLifeSound = soundPool.load(context, R.raw.gain_life, 1);
     }
@@ -246,7 +247,7 @@ public class GameView extends View {
             backgroundBitmap = Bitmap.createScaledBitmap(backgroundBitmap, w, h, true);
             treeBitmap = Bitmap.createScaledBitmap(treeBitmap, w, h, true);
         }
-        // ✅ Scale redgradientpng.png to fit the screen
+        //  Scale red_warning.png to fit the screen
         if (redGradientBitmap != null) {
             redGradientBitmap = Bitmap.createScaledBitmap(redGradientBitmap, w, h, true);
         }
@@ -645,16 +646,16 @@ public class GameView extends View {
         if (targetLives > 0) {
             targetLives--;
 
-            // ✅ Play lose life sound
+            //  Play lose life sound
             if (soundPool != null) {
                 soundPool.play(loseLifeSound, 1, 1, 0, 0, 1);
             }
 
-            // ✅ Deduct a fixed 200 points (no more doubling)
+            //  Deduct a fixed 200 points (no more doubling)
             int deduction = 1000; // Always subtract 200 points
             score -= deduction;  // Allow negative scores
 
-            // ✅ Show the negative score popup
+            //  Show the negative score popup
             scorePopups.add(new ScorePopup(targetX, targetY, -deduction, true)); // Red popup for deduction
 
             // Update target/heart visuals
@@ -699,7 +700,7 @@ public class GameView extends View {
                 gameOver();
             }
 
-            // ✅ Update UI with the new score
+            //  Update UI with the new score
             ((GameActivity) getContext()).updateScoreCounter(score);
         }
     }
@@ -766,7 +767,7 @@ public class GameView extends View {
                 if (currentTime - lastBlinkTime > BLINK_INTERVAL) {
                     lastBlinkTime = currentTime;
                     isRedGradientBlinking = !isRedGradientBlinking;
-                    postInvalidate(); // ✅ Force redraw to avoid lingering overlays
+                    postInvalidate(); //  Force redraw to avoid lingering overlays
                 }
 
                 if (isRedGradientBlinking) {
@@ -867,7 +868,7 @@ public class GameView extends View {
                 enemiesToRemove.add(enemy);
                 playEnemyHitSound(enemy.enemyType);
 
-                // ✅ Calculate the score based on distance
+                //  Calculate the score based on distance
                 int earnedScore = getScoreForEnemyType(enemy.enemyType, enemy.x, enemy.y, targetX, targetY);
                 score += earnedScore;
 

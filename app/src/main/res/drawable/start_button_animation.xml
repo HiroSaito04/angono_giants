@@ -2,7 +2,7 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:oneshot="true">
 
-    <item android:drawable="@drawable/start01" android:duration="200"/>
-    <item android:drawable="@drawable/start02" android:duration="200"/>
-    <item android:drawable="@drawable/start01" android:duration="200"/>
+    <item android:drawable="@drawable/start_button01" android:duration="200"/>
+    <item android:drawable="@drawable/start_button02" android:duration="200"/>
+    <item android:drawable="@drawable/start_button01" android:duration="200"/>
 </animation-list>

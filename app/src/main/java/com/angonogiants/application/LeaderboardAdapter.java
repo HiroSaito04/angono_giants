@@ -1,4 +1,5 @@
-package com.example.angonogiants;
+//app\src\main\java\com\angonogiants\application\LeaderboardAdapter.java
+package com.angonogiants.application;
 
 import android.content.Context;
 import android.view.Gravity;
@@ -11,8 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class LeaderboardAdapter extends BaseAdapter {
     private Context context;

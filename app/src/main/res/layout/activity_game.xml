@@ -16,7 +16,7 @@
         android:layout_alignParentTop="true" />
 
     <!-- Timer Icon -->
-    <com.example.angonogiants.GameView
+    <com.angonogiants.application.GameView
         android:id="@+id/gameView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,7 +40,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/timericon"
+        android:src="@drawable/timer_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,13 +57,13 @@
         app:layout_constraintStart_toEndOf="@id/timerIcon"
         app:layout_constraintTop_toTopOf="@id/timerIcon" />
 
-    <!-- Zword Icon (Before Tap Counter) -->
+    <!-- Sword Icon (Before Tap Counter) -->
     <ImageView
-        android:id="@+id/zwordIcon"
+        android:id="@+id/swordIcon"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/zwordicon"
+        android:src="@drawable/sword_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/timerIcon" />
 
@@ -77,7 +77,7 @@
         android:layout_marginTop="20dp"
         android:textColor="@android:color/white"
         android:fontFamily="@font/start"
-        app:layout_constraintStart_toEndOf="@id/zwordIcon"
+        app:layout_constraintStart_toEndOf="@id/swordIcon"
         app:layout_constraintTop_toBottomOf="@id/timerIcon" />
 
     <!-- Wave Text (Bottom Centered) -->
@@ -116,7 +116,7 @@
         android:layout_height="0dp"
         android:scaleType="fitXY"
         android:visibility="gone"
-        android:src="@drawable/gameoverzkull"
+        android:src="@drawable/gameoverskull_background"
         android:contentDescription="Appears after losing"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -132,7 +132,7 @@
         android:layout_height="0dp"
         android:scaleType="fitXY"
         android:visibility="gone"
-        android:src="@drawable/lostfinalscore"
+        android:src="@drawable/lostfinalscore_background"
         android:contentDescription="Appears after the game over image after 5 second delay"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -145,7 +145,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitXY"
-        android:src="@drawable/gamewonthanks"
+        android:src="@drawable/gamewonthanks_background"
         android:visibility="gone"
         android:contentDescription="Appears when the game is won"
         app:layout_constraintTop_toTopOf="parent"
@@ -205,7 +205,7 @@
         android:id="@+id/restartButton"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:background="@drawable/restart_animation"
+        android:background="@drawable/restart_button_animation"
         android:contentDescription="restart game"
         android:scaleType="fitCenter"
         android:visibility="gone"
@@ -234,7 +234,7 @@
         android:id="@+id/exitButton"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:background="@drawable/exit_animation"
+        android:background="@drawable/exit_button_animation"
         android:contentDescription="exit"
         android:scaleType="fitCenter"
         android:visibility="gone"
@@ -282,7 +282,7 @@
                 android:id="@+id/finalTimerIcon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/timericon" />
+                android:src="@drawable/timer_icon" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -318,10 +318,10 @@
             android:gravity="center"
             android:layout_marginTop="10dp">
             <ImageView
-                android:id="@+id/finalZwordIcon"
+                android:id="@+id/finalSwordIcon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/zwordicon" />
+                android:src="@drawable/sword_icon" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
