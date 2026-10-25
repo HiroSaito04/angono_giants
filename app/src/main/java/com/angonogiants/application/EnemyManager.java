@@ -1,4 +1,4 @@
-
+//app\src\main\java\com\angonogiants\application\EnemyManager.java
 package com.angonogiants.application;
 
 import android.os.SystemClock;
@@ -386,17 +386,30 @@ public final class EnemyManager {
         }
     }
 
+    
     private void prepareWaveSpawns() {
-        if (stopped) return;
+        if (stopped) {
+            return;
+        }
+
+        // Original wave progression.
+        int calculatedWaveSize =
+                1 + waveNumber / 5;
+
+        // Each level has a difficulty-based limit.
+        int maximumEnemies =
+                LevelConfig.getMaxEnemiesPerWave(
+                        levelNumber
+                );
 
         pendingEnemies = Math.min(
-                1 + waveNumber / 5,
-                MAX_ENEMIES_PER_WAVE
+                calculatedWaveSize,
+                maximumEnemies
         );
 
         nextEnemyAt =
-                SystemClock.uptimeMillis() +
-                WAVE_START_DELAY;
+                SystemClock.uptimeMillis()
+                        + WAVE_START_DELAY;
 
         stage = WaveStage.SPAWNING;
     }

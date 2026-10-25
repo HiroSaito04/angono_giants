@@ -10,19 +10,25 @@ android {
 
     defaultConfig {
         applicationId = "com.angonogiants.application"
+
         minSdk = 25
         targetSdk = 34
 
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        testInstrumentationRunner =
+            "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
+
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
+                getDefaultProguardFile(
+                    "proguard-android-optimize.txt"
+                ),
                 "proguard-rules.pro"
             )
         }
@@ -35,28 +41,59 @@ android {
 }
 
 dependencies {
+
+    // ----------------------------------
     // Android UI
+    // ----------------------------------
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
 
-    // Image and GIF loading
+    // ----------------------------------
+    // Glide - Image and GIF Loading
+    // ----------------------------------
+
     implementation(libs.glide)
     annotationProcessor(libs.glide.compiler)
 
-    // Firebase Realtime Database
-    
-    implementation platform(
-        'com.google.firebase:firebase-bom:34.19.0'
-    )
-    implementation 'com.google.firebase:firebase-auth'
-    implementation 'com.google.firebase:firebase-database'
+    // ----------------------------------
+    // Firebase Bill of Materials
+    // ----------------------------------
 
-    // Unit testing
+    implementation(
+        platform(
+            "com.google.firebase:firebase-bom:34.19.0"
+        )
+    )
+
+    // ----------------------------------
+    // Firebase Authentication
+    // ----------------------------------
+
+    implementation(
+        "com.google.firebase:firebase-auth"
+    )
+
+    // ----------------------------------
+    // Firebase Realtime Database
+    // ----------------------------------
+
+    implementation(
+        "com.google.firebase:firebase-database"
+    )
+
+    // ----------------------------------
+    // Unit Testing
+    // ----------------------------------
+
     testImplementation(libs.junit)
 
-    // Android instrumented testing
+    // ----------------------------------
+    // Android Instrumented Testing
+    // ----------------------------------
+
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 }

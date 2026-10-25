@@ -1,4 +1,4 @@
-
+//app/src/main/java/com/angonogiants/application/PlayerProfile.java
 package com.angonogiants.application;
 
 public class PlayerProfile {

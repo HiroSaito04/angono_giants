@@ -1,109 +1,108 @@
-
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="130dp"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:padding="10dp">
+    android:padding="8dp"
+    android:background="#20FFFFFF">
 
-    <!-- Top 3 medal -->
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/medalContainer"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="64dp"
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        android:gravity="center"
         android:visibility="gone">
 
         <ImageView
             android:id="@+id/medalgold"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@drawable/medal1gold"
+            android:scaleType="fitCenter"
             android:visibility="gone"
-            android:contentDescription="First place" />
+            android:contentDescription="Gold medal" />
 
         <ImageView
             android:id="@+id/medalzilver"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@drawable/medal2silver"
+            android:scaleType="fitCenter"
             android:visibility="gone"
-            android:contentDescription="Second place" />
+            android:contentDescription="Silver medal" />
 
         <ImageView
             android:id="@+id/medalbronze"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@drawable/medal3bronze"
+            android:scaleType="fitCenter"
             android:visibility="gone"
-            android:contentDescription="Third place" />
+            android:contentDescription="Bronze medal" />
 
-    </FrameLayout>
+    </LinearLayout>
 
-    <!-- Player details -->
     <LinearLayout
         android:id="@+id/playerInfoContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:orientation="vertical"
         android:gravity="center"
-        android:orientation="vertical">
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp">
 
         <TextView
             android:id="@+id/playerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/slkscr"
             android:text="Player"
             android:textColor="#81645C"
             android:textSize="19sp"
             android:textStyle="bold"
-            android:maxLines="2" />
+            android:fontFamily="@font/slkscr"
+            android:gravity="center_vertical" />
 
         <TextView
-            android:id="@+id/highestLevel"
+            android:id="@+id/playerLevel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/slkscr"
-            android:text="Highest Level: 1"
-            android:textColor="#9A632D"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="3dp"
+            android:text="LEVEL 1"
+            android:textColor="#6B4536"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/slkscr" />
 
         <TextView
             android:id="@+id/playerScore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:fontFamily="@font/slkscr"
-            android:text="Best Score: 0"
+            android:text="SCORE: 0"
             android:textColor="#81645C"
-            android:textSize="16sp" />
+            android:textSize="15sp"
+            android:fontFamily="@font/slkscr" />
 
         <TextView
             android:id="@+id/wavesSurvived"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/slkscr"
-            android:text="Waves: 0"
+            android:text="WAVES: 0"
             android:textColor="#81645C"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            android:fontFamily="@font/slkscr" />
 
         <TextView
             android:id="@+id/timePlayed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/slkscr"
-            android:text="Time: 0 seconds"
+            android:text="TIME: 0 seconds"
             android:textColor="#81645C"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            android:fontFamily="@font/slkscr" />
 
     </LinearLayout>
 

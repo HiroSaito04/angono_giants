@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#261812"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+
+        <Button
+            android:id="@+id/authBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="BACK"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:fontFamily="@font/start"
+            android:backgroundTint="#49352B" />
+
+        <TextView
+            android:id="@+id/authTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="WELCOME BACK"
+            android:gravity="center"
+            android:textColor="#FFD700"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/start" />
+
+        <TextView
+            android:id="@+id/authSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="14dp"
+            android:text="Sign in to save progress online"
+            android:gravity="center"
+            android:textColor="#EFD5BD"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/authUsername"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Username"
+            android:inputType="text"
+            android:singleLine="true"
+            android:maxLength="20"
+            android:fontFamily="@font/start"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#BCAAA4"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/authEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Email address"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/start"
+            android:textColorHint="#BCAAA4"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/authPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/start"
+            android:textColorHint="#BCAAA4"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/authErrorText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:padding="6dp"
+            android:textColor="#FF9C91"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/authSubmitButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="15dp"
+            android:text="LOGIN"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/start"
+            android:backgroundTint="#79573C" />
+
+        <Button
+            android:id="@+id/authSwitchButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CREATE NEW ACCOUNT"
+            android:textSize="12sp"
+            android:textColor="#EFD5BD"
+            android:fontFamily="@font/start"
+            android:backgroundTint="#49352B" />
+
+        <Button
+            android:id="@+id/authResetButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="FORGOT PASSWORD?"
+            android:textSize="12sp"
+            android:textColor="#EFD5BD"
+            android:fontFamily="@font/start"
+            android:backgroundTint="#49352B" />
+
+        <ProgressBar
+            android:id="@+id/authProgress"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:indeterminate="true"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/start"
+            android:text="You can play without logging in."
+            android:textColor="#EFD5BD"
+            android:textSize="8sp"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+</ScrollView>

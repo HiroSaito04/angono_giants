@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- FINAL SCORE PANEL -->
+
+    <ScrollView
+        android:id="@+id/finalScoreContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="95dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
+
+            <!-- PLAYER NAME -->
+
+            <TextView
+                android:id="@+id/playerNameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/start"
+                android:gravity="center"
+                android:text="Player"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                android:shadowColor="#21140E"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="2" />
+
+            <!-- LEVEL REACHED / COMPLETED -->
+
+            <TextView
+                android:id="@+id/finalLevelTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/start"
+                android:gravity="center"
+                android:text="LEVEL 1 COMPLETE!"
+                android:textColor="#FFD700"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- RESULT SUBTITLE -->
+
+            <TextView
+                android:id="@+id/resultSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/slkscr"
+                android:gravity="center"
+                android:text="LEVEL 2 UNLOCKED"
+                android:textColor="#FFF1CB"
+                android:textSize="16sp" />
+
+            <!--
+                ALL RESULT ROWS SHARE:
+                32dp ICON
+                10dp GAP
+                FLEXIBLE LABEL
+                120dp VALUE COLUMN
+
+                This aligns icons, text and results.
+            -->
+
+            <!-- TIME ROW -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginHorizontal="50dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp">
+
+                <ImageView
+                    android:id="@+id/finalTimerIcon"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/timer_icon"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/start"
+                    android:gravity="start|center_vertical"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:text="TIME"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/finalScoreTimer"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/slkscr"
+                    android:gravity="end|center_vertical"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:text="00:00"
+                    android:textColor="#FFD700"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+            <!-- SCORE ROW -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginHorizontal="50dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp">
+
+                <ImageView
+                    android:id="@+id/finalSwordIcon"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/sword_icon"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/start"
+                    android:gravity="start|center_vertical"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:text="SCORE"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/finalScoreTV"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/slkscr"
+                    android:gravity="end|center_vertical"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="14sp"
+                    android:autoSizeMaxTextSize="22sp"
+                    android:autoSizeStepGranularity="1sp"
+                    android:text="0"
+                    android:textColor="#FFD700"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+            <!-- WAVES ROW -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginHorizontal="50dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp">
+
+                <ImageView
+                    android:id="@+id/finalwaveIcon"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/higantes7top"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/start"
+                    android:gravity="start|center_vertical"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:text="WAVES"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/finalwaveTV"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/slkscr"
+                    android:gravity="end|center_vertical"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="#FFD700"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!--
+        FINAL RESULT BUTTONS
+
+        Both buttons are centered.
+
+        On victory:
+          DEFEND AGAIN + MAIN MENU
+
+        On defeat:
+          DEFEND AGAIN + MAIN MENU
+
+        Fixed button widths prevent the Main Menu
+        animation from stretching when shown alone.
+    -->
+
+    <LinearLayout
+        android:id="@+id/finalActionRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="80dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- DEFEND AGAIN -->
+
+        <Button
+            android:id="@+id/defendAgainButton"
+            android:layout_width="140dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/defendagain_button_animation"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            android:contentDescription="Defend Again" />
+
+        <!-- MAIN MENU -->
+
+        <ImageButton
+            android:id="@+id/mainMenuButton"
+            android:layout_width="140dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/mainmenu_button_animation"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            android:contentDescription="Return to Main Menu" />
+
+    </LinearLayout>
+
+</merge>

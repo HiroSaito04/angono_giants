@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- TIMER ICON -->
+    <ImageView
+        android:id="@+id/timerIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/timer_icon"
+        android:contentDescription="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- TIMER VALUE -->
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/start"
+        android:text="00:30"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="@id/timerIcon"
+        app:layout_constraintBottom_toBottomOf="@id/timerIcon"
+        app:layout_constraintStart_toEndOf="@id/timerIcon" />
+
+    <!-- SCORE ICON -->
+    <ImageView
+        android:id="@+id/swordIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/sword_icon"
+        android:contentDescription="@null"
+        app:layout_constraintTop_toBottomOf="@id/timerIcon"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- LIVE SCORE -->
+    <TextView
+        android:id="@+id/ScoreCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/start"
+        android:text="Score: 0"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="@id/swordIcon"
+        app:layout_constraintBottom_toBottomOf="@id/swordIcon"
+        app:layout_constraintStart_toEndOf="@id/swordIcon" />
+
+    <!-- CURRENT LEVEL AND WAVE -->
+    <TextView
+        android:id="@+id/waveCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/start"
+        android:gravity="center"
+        android:text="Level 1 - Wave 1"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- PAUSE / RESUME -->
+    <ImageButton
+        android:id="@+id/btnPauseResume"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/pause_button_animation"
+        android:scaleType="fitCenter"
+        android:contentDescription="Pause or Resume"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</merge>
