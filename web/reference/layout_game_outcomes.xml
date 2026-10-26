@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- DEFEAT INTRO BACKGROUND -->
+    <ImageView
+        android:id="@+id/gameOverImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/gameoverskull_background"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:contentDescription="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- DEFEAT FINAL SCORE BACKGROUND -->
+    <ImageView
+        android:id="@+id/lostfinalscoreiv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/lostfinalscore_background"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:contentDescription="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- LEVEL COMPLETE THANK-YOU BACKGROUND -->
+    <ImageView
+        android:id="@+id/gameThanksImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/gamewonthanks_background"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:contentDescription="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- VICTORY FINAL SCORE BACKGROUND -->
+    <ImageView
+        android:id="@+id/gameWonImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/wonfinalscore"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:contentDescription="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- THANK-YOU MESSAGE -->
+    <TextView
+        android:id="@+id/gameThanksText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="45dp"
+        android:fontFamily="@font/slkscr"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="#401B13"
+        android:textSize="15sp"
+        android:lineSpacingExtra="5dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</merge>

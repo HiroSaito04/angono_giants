@@ -1,0 +1,10 @@
+{
+  "name": "angono-giants-original-web-port",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python -m http.server 8080 --directory site",
+    "test": "node --test tests/*.test.js"
+  }
+}

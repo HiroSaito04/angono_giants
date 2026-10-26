@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context=".GameActivity">
+
+    <!--
+        LAYER 1: ANIMATED GAME BACKGROUND
+    -->
+    <ImageView
+        android:id="@+id/tilelayerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:contentDescription="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!--
+        LAYER 2: GAME SPRITES
+
+        GameRenderer draws the giants, stall,
+        hearts, warning effects and score popups.
+    -->
+    <com.angonogiants.application.GameView
+        android:id="@+id/gameView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!--
+        LAYER 3: ANIMATED FOREGROUND TREES
+    -->
+    <ImageView
+        android:id="@+id/treelayerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:contentDescription="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!--
+        LAYER 4: GAMEPLAY HUD
+        Timer, score, wave counter and pause.
+    -->
+    <include
+        layout="@layout/layout_game_hud" />
+
+    <!--
+        LAYER 5: GAME OUTCOME SCREENS
+        Victory, defeat and their backgrounds.
+    -->
+    <include
+        layout="@layout/layout_game_outcomes" />
+
+    <!--
+        LAYER 6: PAUSE MENU
+        Restart, Main Menu and Exit.
+    -->
+    <include
+        layout="@layout/layout_game_pause" />
+
+    <!--
+        LAYER 7: FINAL SCORE SCREEN
+        Time, score, waves and action buttons.
+    -->
+    <include
+        layout="@layout/layout_game_results" />
+
+    <!--
+        LAYER 8: INTRO ANIMATION
+        MUST STAY LAST.
+
+        introCurtain is hidden at GIF midpoint.
+        Transparent gifOverlay stays on top
+        until the intro animation finishes.
+    -->
+    <include
+        layout="@layout/layout_game_intro" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

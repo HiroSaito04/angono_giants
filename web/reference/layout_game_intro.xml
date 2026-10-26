@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--
+        FIRST HALF OF INTRO
+
+        This black curtain covers the prepared
+        game while the first half of the GIF plays.
+
+        GameActivity removes the curtain at
+        the GIF midpoint.
+    -->
+    <View
+        android:id="@+id/introCurtain"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/black"
+        android:visibility="gone"
+        android:clickable="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!--
+        TRANSPARENT INTRO GIF
+
+        Remains above ALL gameplay views.
+
+        Once the curtain is gone, the sprites,
+        stall, hearts, backgrounds and HUD
+        can be seen through transparent pixels.
+
+        Gameplay stays paused until the GIF ends.
+    -->
+    <ImageView
+        android:id="@+id/gifOverlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:visibility="visible"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="Game introduction animation"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</merge>

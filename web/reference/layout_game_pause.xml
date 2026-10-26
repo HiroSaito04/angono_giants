@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- RESTART GAME -->
+    <ImageButton
+        android:id="@+id/restartButton"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:background="@drawable/restart_button_animation"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        android:contentDescription="Restart Game"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.381" />
+
+    <!-- MAIN MENU -->
+    <ImageButton
+        android:id="@+id/menuButton"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:background="@drawable/mainmenu_button_animation"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        android:contentDescription="Main Menu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <!-- EXIT GAME -->
+    <ImageButton
+        android:id="@+id/exitButton"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:background="@drawable/exit_button_animation"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        android:contentDescription="Exit Game"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.616" />
+
+</merge>

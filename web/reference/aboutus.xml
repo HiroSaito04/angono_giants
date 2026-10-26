@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/about_background"
+    tools:context=".AboutUsActivity">
+
+    <!-- ABOUT US CONTENT -->
+    <ScrollView
+        android:id="@+id/aboutScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/backToMenuButton"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:background="#66000000"
+        android:scrollbars="none"
+        android:fillViewport="true"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ABOUT TITLE -->
+            <TextView
+                android:id="@+id/aboutTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ABOUT THE GIANTS"
+                android:textColor="#FFD700"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:paddingTop="24dp"
+                android:fontFamily="@font/start"
+                android:shadowColor="#000000"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="1" />
+
+            <!-- GAME DESCRIPTION -->
+            <TextView
+                android:id="@+id/aboutDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/start"
+                android:lineSpacingExtra="4dp"
+                android:text="Angono Giants was developed as an entry for TechFiesta at National University. Created by INF232, inspired by the Higantes Festival.\n\nThe Higantes Festival is a local festival held annually in Angono, Rizal, Philippines, where hundreds of giant papier-mâché puppets are paraded, representing the common people's mockery of the bad hacienda owners of the past during Spanish colonial rule."
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <!-- GOLD DIVIDER -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:background="#FFD700" />
+
+            <!-- ACHIEVEMENTS -->
+            <TextView
+                android:id="@+id/achievementsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="[ ACHIEVEMENTS ]"
+                android:textColor="#00FF00"
+                android:textSize="23sp"
+                android:fontFamily="@font/start"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/achievementsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="• TECHFIESTA 2.0 CHAMPION\n• GRAND ACHIEVEMENT AWARD\n• BEST MOBILE GAME APP"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:fontFamily="@font/start"
+                android:lineSpacingExtra="6dp" />
+
+            <TextView
+                android:id="@+id/achievementsDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Honoring the fusion of technology and creativity. March 5, 2025."
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:fontFamily="@font/start" />
+
+            <!-- DIVIDER -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:background="#555555" />
+
+            <!-- DEVELOPMENT TEAM -->
+            <TextView
+                android:id="@+id/devTeamTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="[ DEV TEAM ]"
+                android:textColor="#FFD700"
+                android:textSize="22sp"
+                android:fontFamily="@font/start"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/devTeamMembers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="MIKE ANGELO RUBIA\n> Lead UI Programmer\n> Lead Game Assets Illustrator\n> Database Programmer\n> Gameplay Programmer\n\nJAMIR OBRIEN CRUZ\n> Lead Gameplay Programmer\n> UI/UX Programmer\n> StoryBoard\n> Sound Effect Assistant\n\nMARYON CALEB ALAGON\n> Main Sound Engineer\n> Game Assets Illustrator"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:fontFamily="@font/start"
+                android:lineSpacingExtra="5dp" />
+
+            <!-- DIVIDER -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:background="#555555" />
+
+            <!-- CONTRIBUTORS -->
+            <TextView
+                android:id="@+id/contributorsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="[ CONTRIBUTORS ]"
+                android:textColor="#FFD700"
+                android:textSize="22sp"
+                android:fontFamily="@font/start"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/contributorsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="30dp"
+                android:text="Main Concept\n> INF232\n\nGame Assets Illustration Assist\n> Christy Yu\n> Jake Villacarlos"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:fontFamily="@font/start"
+                android:lineSpacingExtra="5dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- FIXED BACK TO MAIN MENU BUTTON -->
+    <ImageButton
+        android:id="@+id/backToMenuButton"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/mainmenu_button_animation"
+        android:contentDescription="Back to Main Menu" />
+
+</RelativeLayout>

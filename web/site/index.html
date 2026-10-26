@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#000000">
+  <title>Angono Giants</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <!-- Android-equivalent 360dp x 800dp layout, scaled to viewport. -->
+  <main id="android-stage" aria-label="Angono Giants">
+    <!-- SplashActivity: activity_splash.xml -->
+    <section id="splash-screen" class="screen"><img class="cover" src="assets/images/splashart.png" alt="Angono Giants splash"></section>
+
+    <!-- MainActivity: activity_main.xml; original animated background and positions -->
+    <section id="menu-screen" class="screen is-hidden">
+      <img id="menu-screen-bg" class="cover" src="assets/images/mainmenubg01.gif" alt="">
+      <button id="account-button" class="account-button" type="button">SIGN IN</button>
+      <button id="leaderboard-open" class="image-button menu-leaderboard" type="button" aria-label="Global Leaderboard"><img src="assets/images/leaderboard_button.gif" alt=""></button>
+      <div class="menu-bottom">
+        <div id="level-status">GUEST - LEVEL 1</div>
+        <input id="player-name" type="text" maxlength="20" placeholder="Guest name" autocomplete="nickname" spellcheck="false" aria-label="Guest name">
+        <button id="start-button" class="image-button menu-start frames" type="button" aria-label="Start game" data-first="start_button01.png" data-second="start_button02.png"><img src="assets/images/start_button01.png" alt=""></button>
+      </div>
+      <button id="about-open" class="image-button menu-about" type="button" aria-label="About Us"><img src="assets/images/about_button.png" alt=""></button>
+    </section>
+
+    <!-- LoadingActivity: activity_loading.xml -->
+    <section id="loading-screen" class="screen is-hidden">
+      <video id="loading-video" playsinline preload="auto" webkit-playsinline muted>
+        <source src="assets/video/loadingpagevideo.mp4" type="video/mp4">
+      </video>
+      <button id="skip-loading" type="button">Skip</button>
+    </section>
+
+    <!-- GameActivity root: activity_game.xml, same bottom-to-top layout -->
+    <section id="game-screen" class="screen is-hidden">
+      <img id="tilelayerView" class="cover no-interaction" src="assets/images/tile_layer.gif" alt="">
+      <canvas id="gameView" width="360" height="800" aria-label="Tap giants to defend the stall"></canvas>
+      <img id="treelayerView" class="cover no-interaction" src="assets/images/tree_layer.gif" alt="">
+
+      <!-- layout_game_hud.xml -->
+      <div id="game-hud" class="hud">
+        <img id="timerIcon" src="assets/images/timer_icon.png" alt="">
+        <span id="timerText">00:30</span>
+        <img id="swordIcon" src="assets/images/sword_icon.png" alt="">
+        <span id="ScoreCounter">Score: 0</span>
+        <div id="waveCounter">Level 1 - Wave 1</div>
+        <button id="btnPauseResume" class="image-button frames" type="button" aria-label="Pause or Resume" data-first="pause_button01.png" data-second="pause_button02.png"><img src="assets/images/pause_button01.png" alt=""></button>
+      </div>
+
+      <!-- layout_game_outcomes.xml -->
+      <img id="gameOverImage" class="cover screen-layer is-hidden" src="assets/images/gameoverskull_background.png" alt="">
+      <img id="lostfinalscoreiv" class="cover screen-layer is-hidden" src="assets/images/lostfinalscore_background.png" alt="">
+      <img id="gameThanksImage" class="cover screen-layer is-hidden" src="assets/images/gamewonthanks_background.gif" alt="">
+      <img id="gameWonImage" class="cover screen-layer is-hidden" src="assets/images/wonfinalscore.gif" alt="">
+      <div id="gameThanksText" class="is-hidden" aria-live="polite"></div>
+
+      <!-- layout_game_pause.xml: no invented popup -->
+      <button id="restartButton" class="image-button pause-action frames is-hidden" type="button" style="top:38.1%" data-first="restart_button01.png" data-second="restart_button02.png" aria-label="Restart game"><img src="assets/images/restart_button01.png" alt=""></button>
+      <button id="menuButton" class="image-button pause-action frames is-hidden" type="button" style="top:50%" data-first="menu_button01.png" data-second="menu_button02.png" aria-label="Main Menu"><img src="assets/images/menu_button01.png" alt=""></button>
+      <button id="exitButton" class="image-button pause-action frames is-hidden" type="button" style="top:61.6%" data-first="exit_button01.png" data-second="exit_button02.png" aria-label="Exit game"><img src="assets/images/exit_button01.png" alt=""></button>
+
+      <!-- layout_game_results.xml -->
+      <section id="finalScoreContainer" class="is-hidden" aria-live="polite">
+        <div class="score-panel-inner">
+          <div id="playerNameText">Guest</div>
+          <div id="finalLevelTV">LEVEL 1 COMPLETE!</div>
+          <div id="resultSubtitle">LEVEL 2 UNLOCKED</div>
+          <div class="result-row"><img id="finalTimerIcon" src="assets/images/timer_icon.png" alt=""><span>TIME</span><strong id="finalScoreTimer">00:00</strong></div>
+          <div class="result-row"><img id="finalSwordIcon" src="assets/images/sword_icon.png" alt=""><span>SCORE</span><strong id="finalScoreTV">0</strong></div>
+          <div class="result-row"><img id="finalwaveIcon" src="assets/images/higantes7top.png" alt=""><span>WAVES</span><strong id="finalwaveTV">0</strong></div>
+        </div>
+      </section>
+      <div id="finalActionRow" class="is-hidden">
+        <button id="defendAgainButton" class="image-button frames" type="button" data-first="defendagain_button01.png" data-second="defendagain_button02.png" aria-label="Defend Again"><img src="assets/images/defendagain_button01.png" alt=""></button>
+        <button id="mainMenuButton" class="image-button frames" type="button" data-first="menu_button01.png" data-second="menu_button02.png" aria-label="Main Menu"><img src="assets/images/menu_button01.png" alt=""></button>
+      </div>
+
+      <!-- layout_game_intro.xml: final two game layers -->
+      <div id="introCurtain" class="cover is-hidden" aria-hidden="true"></div>
+      <img id="gifOverlay" class="cover is-hidden" src="assets/images/gametransition3.gif" alt="Game introduction animation">
+    </section>
+
+    <!-- LeaderboardActivity: activity_leaderboard.xml -->
+    <section id="leaderboard-screen" class="screen is-hidden">
+      <img class="cover" src="assets/images/leaderboard_background.png" alt="">
+      <div id="leaderboardContent">
+        <header>HIGHEST LEVEL RANKINGS</header>
+        <div id="leaderboardListView" role="list"></div>
+        <p id="emptyLeaderboardText">No scores yet. Be the first to climb the levels!</p>
+      </div>
+      <button id="mainMenuLButton" class="image-button frames" type="button" data-first="menu_button01.png" data-second="menu_button02.png" aria-label="Return to Main Menu"><img src="assets/images/menu_button01.png" alt=""></button>
+    </section>
+
+    <!-- AboutUsActivity: aboutus.xml -->
+    <section id="about-screen" class="screen is-hidden">
+      <img class="cover" src="assets/images/about_background.png" alt="">
+      <div id="about-scroll">
+        <h1>ABOUT THE GIANTS</h1>
+        <p>Angono Giants was developed as an entry for TechFiesta at National University. Created by INF232, inspired by the Higantes Festival.</p>
+        <p>The Higantes Festival is a local festival held annually in Angono, Rizal, Philippines, where hundreds of giant papier-mâché puppets are paraded, representing the common people's mockery of the bad hacienda owners of the past during Spanish colonial rule.</p>
+        <hr><h2 class="green">[ ACHIEVEMENTS ]</h2>
+        <p>• TECHFIESTA 2.0 CHAMPION<br>• GRAND ACHIEVEMENT AWARD<br>• BEST MOBILE GAME APP</p>
+        <p>Honoring the fusion of technology and creativity. March 5, 2025.</p>
+        <hr><h2>[ DEV TEAM ]</h2>
+        <p>MIKE ANGELO RUBIA<br>&gt; Lead UI Programmer<br>&gt; Lead Game Assets Illustrator<br>&gt; Database Programmer<br>&gt; Gameplay Programmer</p>
+        <p>JAMIR OBRIEN CRUZ<br>&gt; Lead Gameplay Programmer<br>&gt; UI/UX Programmer<br>&gt; StoryBoard<br>&gt; Sound Effect Assistant</p>
+        <p>MARYON CALEB ALAGON<br>&gt; Main Sound Engineer<br>&gt; Game Assets Illustrator</p>
+        <hr><h2>[ CONTRIBUTORS ]</h2>
+        <p>Main Concept<br>&gt; INF232</p><p>Game Assets Illustration Assist<br>&gt; Christy Yu<br>&gt; Jake Villacarlos</p>
+      </div>
+      <button id="about-back" class="image-button frames" type="button" data-first="menu_button01.png" data-second="menu_button02.png" aria-label="Back to Main Menu"><img src="assets/images/menu_button01.png" alt=""></button>
+    </section>
+
+    <!-- MainActivity dialog_auth.xml, in-page modal to preserve Android flow -->
+    <section id="auth-overlay" class="screen is-hidden" role="dialog" aria-modal="true" aria-label="Account">
+      <div class="auth-dialog">
+        <button id="auth-back" type="button">BACK</button>
+        <h2 id="auth-title">WELCOME BACK</h2><p id="auth-subtitle">Sign in to save progress online</p>
+        <input id="auth-username" type="text" maxlength="20" placeholder="Username" class="is-hidden">
+        <input id="auth-email" type="email" placeholder="Email address" autocomplete="email">
+        <input id="auth-password" type="password" placeholder="Password" autocomplete="current-password">
+        <p id="auth-error" class="is-hidden"></p>
+        <button id="auth-submit" type="button">LOGIN</button>
+        <button id="auth-switch" type="button">CREATE NEW ACCOUNT</button>
+        <button id="auth-reset" type="button">FORGOT PASSWORD?</button>
+        <small>You can play without logging in.</small>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
