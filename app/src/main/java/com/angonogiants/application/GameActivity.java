@@ -1648,8 +1648,6 @@ public class GameActivity extends AppCompatActivity {
 
         finalScoreContainer.setVisibility(View.VISIBLE);
 
-        defendAgainButton.setText("DEFEND AGAIN");
-
         defendAgainButton.setVisibility(View.VISIBLE);
         defendAgainButton.setEnabled(true);
 
@@ -1844,9 +1842,6 @@ public class GameActivity extends AppCompatActivity {
         updateFinalScore(false);
 
         finalScoreContainer.setVisibility(View.VISIBLE);
-
-        // Show BOTH buttons on defeat.
-        defendAgainButton.setText("DEFEND AGAIN");
 
         defendAgainButton.setVisibility(View.VISIBLE);
         defendAgainButton.setEnabled(true);
