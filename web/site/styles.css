@@ -1,67 +1,597 @@
-@font-face{font-family:start;src:url('./assets/start.ttf') format('truetype');font-display:block}
-@font-face{font-family:slkscr;src:url('./assets/slkscr.ttf') format('truetype');font-display:block}
-:root{color-scheme:dark}*{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000}
-body{display:flex;align-items:center;justify-content:center;touch-action:manipulation}
-#android-stage{position:relative;width:360px;height:800px;flex:0 0 auto;overflow:hidden;background:#000;transform-origin:center center;font-family:start,monospace;-webkit-tap-highlight-color:transparent;user-select:none}
-.screen{position:absolute;inset:0;overflow:hidden;background:#000}.is-hidden{display:none!important}.cover{position:absolute;inset:0;width:100%;height:100%;object-fit:fill}.no-interaction{pointer-events:none}
-button,input{font-family:start,monospace}button{cursor:pointer;touch-action:manipulation}.image-button{padding:0;border:0;background:none;display:flex;align-items:center;justify-content:center}.image-button img{width:100%;height:100%;object-fit:contain;image-rendering:pixelated;pointer-events:none}
-#splash-screen{z-index:10}
-#menu-screen{z-index:10}
-.account-button{position:absolute;right:25px;top:12px;width:125px;height:48px;background:#4c523b13;border:0;color:#fff;font-size:10px}
-.menu-leaderboard{position:absolute;right:0;top:50%;transform:translateY(-50%);width:70px;height:70px}
-.menu-bottom{position:absolute;bottom:50px;left:0;width:100%;display:flex;flex-direction:column;align-items:center;gap:0}
-#level-status{font-size:18px;color:#ffd700;text-shadow:0 0 4px black;margin-bottom:0;text-align:center}
-#player-name{height:50px;width:240px;background:#5c000000;padding:10px;text-align:center;border:none;border-radius:0;color:#efd5bd;font-size:16px;outline:0}
-#player-name::placeholder{color:#efd5bd}
-.menu-start{width:175px;height:75px;margin-top:10px}
-.menu-about{position:absolute;left:0;bottom:110px;width:70px;height:70px}
-#loading-screen{z-index:12}#loading-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-#skip-loading{position:absolute;bottom:50px;left:50%;transform:translateX(-50%);width:120px;height:50px;background:transparent;color:#efd5bd;border:0;font-size:18px}
-#game-screen{z-index:9;background:#000}
-#tilelayerView{z-index:1}#gameView{position:absolute;inset:0;width:100%;height:100%;z-index:2;touch-action:none}#treelayerView{z-index:3}
-.hud{position:absolute;inset:0;z-index:4;color:#fff;pointer-events:none}
-#timerIcon{position:absolute;left:0;top:10px;width:40px;height:40px;object-fit:contain}
-#timerText{position:absolute;left:44px;top:10px;height:40px;display:flex;align-items:center;font-size:20px;white-space:nowrap}
-#swordIcon{position:absolute;left:0;top:60px;width:40px;height:40px;object-fit:contain}
-#ScoreCounter{position:absolute;left:44px;top:60px;height:40px;display:flex;align-items:center;font-size:20px;white-space:nowrap}
-#waveCounter{position:absolute;bottom:40px;left:0;right:0;text-align:center;font-size:20px}
-#btnPauseResume{position:absolute;right:10px;top:10px;width:100px;height:80px;pointer-events:auto}
-.screen-layer{z-index:5;pointer-events:none}
-#gameThanksText{position:absolute;z-index:6;left:18px;right:24px;top:50%;transform:translateY(calc(-50% - 22px));font:15px/1.5 slkscr,monospace;text-align:center;color:#401b13;white-space:pre-line}
-.pause-action{position:absolute;z-index:7;left:50%;transform:translate(-50%,-50%);height:60px;width:150px}
-#finalScoreContainer{position:absolute;z-index:8;top:40px;bottom:95px;left:20px;right:20px;display:flex;align-items:center;justify-content:center;overflow-y:auto;overscroll-behavior:contain}
-.score-panel-inner{width:100%;padding:0 8px;text-align:center;color:#fff;flex:0 0 auto;text-shadow:2px 2px 2px #21140e}
-#playerNameText{font-size:25px;margin-bottom:8px}
-#finalLevelTV{font-size:20px;font-weight:bold;color:#ffd700}
-#resultSubtitle{font:16px slkscr,monospace;color:#fff1cb;margin-top:4px;margin-bottom:15px}
-.result-row{height:56px;display:grid;grid-template-columns:32px minmax(0,1fr) 115px;align-items:center;gap:10px;padding:0 4px;margin:0 4px;text-align:left}
-.result-row img{width:32px;height:32px;object-fit:contain;image-rendering:pixelated}
-.result-row>span{font-size:17px;white-space:nowrap}
-.result-row strong{font:22px slkscr,monospace;text-align:right;color:#ffd700;white-space:nowrap;overflow:hidden;text-overflow:clip}
-#finalActionRow{position:absolute;z-index:9;bottom:80px;left:8px;right:8px;display:flex;gap:8px;justify-content:center;align-items:center}
-#finalActionRow button{width:140px;height:56px}
-#introCurtain{z-index:10;background:#000;pointer-events:all}#gifOverlay{z-index:11;background:transparent;pointer-events:all}
-#leaderboard-screen,#about-screen{z-index:11}
-#leaderboardContent{position:absolute;left:16px;right:16px;top:70px;bottom:80px;display:flex;flex-direction:column}
-#leaderboardContent header{font: bold 23px start;text-align:center;color:#81645c;margin-bottom:8px}
-#leaderboardListView{margin:0 30px;flex:1;overflow-y:auto;scrollbar-width:thin}
-#emptyLeaderboardText{font:18px slkscr;text-align:center;color:#81645c;margin:auto 10px;padding:18px}
-.leaderboard-entry{display:flex;align-items:center;gap:8px;background:#20ffffff;padding:8px;margin-bottom:8px;color:#81645c;font-family:slkscr}
-.leaderboard-entry .medal{width:60px;height:60px;object-fit:contain}
-.leaderboard-entry .entry-info{flex:1;min-width:0;font-size:14px}.leaderboard-entry .entry-info div:first-child{font:bold 17px start;overflow-wrap:anywhere}
-#mainMenuLButton{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);width:120px;height:50px}
-#about-scroll{position:absolute;inset:20px 12px 82px;background:#66000000;padding:12px;overflow:auto;color:#fff;font-size:16px;line-height:1.6}
-#about-scroll h1{font:bold 26px start;text-align:center;color:#ffd700;margin-top:24px}
-#about-scroll h2{font:22px start;text-align:center;color:#ffd700}#about-scroll h2.green{color:#00ff00}#about-scroll hr{height:3px;border:0;background:#ffd700;margin:20px 0 15px}
-#about-back{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:120px;height:50px}
-#auth-overlay{z-index:30;display:flex;justify-content:center;align-items:center;background:#000b}
-.auth-dialog{width:92%;max-height:85%;overflow:auto;background:#261812;padding:24px;display:flex;flex-direction:column;align-items:center;gap:10px;color:#efd5bd}
-.auth-dialog>h2{font:23px start;text-align:center;color:#ffd700;margin:0}
-.auth-dialog>p{font:13px start;text-align:center;margin:4px 0}
-.auth-dialog>input{font:14px start;height:50px;padding:8px;width:100%;border:0;border-bottom:1px solid #bca#aa4;background:none;color:white}
-.auth-dialog>button{width:100%;min-height:45px;border:none;background:#49352b;color:#efd5bd;font-size:12px}
-#auth-back{align-self:flex-start!important;width:auto!important;padding:0 14px}
-#auth-submit{height:52px!important;background:#79573c!important;color:#fff!important}
-#auth-error{color:#ff9c91!important;font-family:sans-serif!important}
-.auth-dialog>small{font:8px start;text-align:center}
+@font-face {
+  font-family: start;
+  src: url("./assets/start.ttf") format("truetype");
+  font-display: block;
+}
+@font-face {
+  font-family: slkscr;
+  src: url("./assets/slkscr.ttf") format("truetype");
+  font-display: block;
+}
+:root {
+  color-scheme: dark;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+#android-stage {
+  position: relative;
+  width: 360px;
+  height: 800px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  background: #000;
+  transform-origin: center center;
+  font-family: start, monospace;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.screen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #000;
+}
+.is-hidden {
+  display: none !important;
+}
+.cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.no-interaction {
+  pointer-events: none;
+}
+
+button,
+input {
+  font-family: start, monospace;
+}
+button {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.image-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+#splash-screen {
+  z-index: 10;
+}
+#menu-screen {
+  z-index: 10;
+}
+/* The GIF paints underneath all menu elements; never replace it while the menu is visible. */
+#menu-screen-bg {
+  z-index: 0;
+  display: block;
+}
+#menu-screen > :not(#menu-screen-bg) {
+  z-index: 1;
+}
+.account-button {
+  position: absolute;
+  right: 25px;
+  top: 12px;
+  width: 125px;
+  height: 48px;
+  background: #1a22014a;
+  border: 0;
+  color: #fff;
+  font-size: 10px;
+}
+.menu-leaderboard {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 70px;
+  height: 70px;
+}
+.menu-bottom {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+#level-status {
+  font-size: 15px;
+  color: #ffd700;
+  text-shadow: 0 0 4px black;
+  margin-bottom: 0;
+  text-align: center;
+}
+#player-name {
+  height: 30px;
+  width: 240px;
+  background: #28130177;
+  padding: 10px;
+  text-align: center;
+  border: none;
+  border-radius: 0;
+  color: #efd5bd;
+  font-size: 16px;
+  outline: 0;
+}
+#player-name::placeholder {
+  color: #efd5bd;
+}
+.menu-start {
+  width: 175px;
+  height: 75px;
+  margin-top: 10px;
+}
+.menu-about {
+  position: absolute;
+  left: 0;
+  bottom: 110px;
+  width: 70px;
+  height: 70px;
+}
+#loading-screen {
+  z-index: 12;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* Fill the entire game viewport on portrait phones and desktops; crop rather than letterbox. */
+#loading-video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  background: #000;
+}
+#skip-loading {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 50px;
+  background: transparent;
+  color: #efd5bd;
+  border: 0;
+  font-size: 18px;
+}
+#game-screen {
+  z-index: 9;
+  background: #000;
+}
+#tilelayerView {
+  z-index: 1;
+}
+#gameView {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+#treelayerView {
+  z-index: 3;
+}
+.hud {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  color: #fff;
+  pointer-events: none;
+}
+#timerIcon {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+#timerText {
+  position: absolute;
+  left: 44px;
+  top: 10px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  white-space: nowrap;
+}
+#swordIcon {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+#ScoreCounter {
+  position: absolute;
+  left: 44px;
+  top: 60px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  white-space: nowrap;
+}
+#waveCounter {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 20px;
+}
+#btnPauseResume {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 100px;
+  height: 80px;
+  pointer-events: auto;
+}
+.screen-layer {
+  z-index: 5;
+  pointer-events: none;
+}
+#gameThanksText {
+  position: absolute;
+  z-index: 6;
+  left: 18px;
+  right: 24px;
+  top: 50%;
+  transform: translateY(calc(-50% - 22px));
+  font:
+    10px/1.5 slkscr,
+    monospace;
+  text-align: center;
+  color: #401b13;
+  white-space: pre-line;
+}
+.pause-action {
+  position: absolute;
+  z-index: 7;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 60px;
+  width: 150px;
+}
+#finalScoreContainer {
+  position: absolute;
+  z-index: 8;
+  top: 40px;
+  bottom: 95px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.score-panel-inner {
+  width: 100%;
+  padding: 0 8px;
+  text-align: center;
+  color: #fff;
+  flex: 0 0 auto;
+  text-shadow: 2px 2px 2px #21140e;
+}
+#playerNameText {
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+#finalLevelTV {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffd700;
+}
+#resultSubtitle {
+  font:
+    16px slkscr,
+    monospace;
+  color: #fff1cb;
+  margin-top: 4px;
+  margin-bottom: 15px;
+}
+.result-row {
+  height: 56px;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 115px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 4px;
+  margin: 0 10px;
+  text-align: left;
+}
+.result-row img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+.result-row > span {
+  font-size: 17px;
+  white-space: nowrap;
+}
+.result-row strong {
+  font:
+    22px slkscr,
+    monospace;
+  text-align: right;
+  color: #ffd700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+#finalActionRow {
+  position: absolute;
+  z-index: 9;
+  bottom: 80px;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+#finalActionRow button {
+  width: 140px;
+  height: 56px;
+}
+#introCurtain {
+  z-index: 10;
+  background: #000;
+  pointer-events: all;
+}
+#gifOverlay {
+  z-index: 11;
+  background: transparent;
+  pointer-events: all;
+}
+#leaderboard-screen,
+#about-screen {
+  z-index: 11;
+}
+#leaderboardContent {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 70px;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+}
+#leaderboardContent header {
+  font: bold 20px start;
+  text-align: center;
+  color: #81645c;
+  margin-bottom: 8px;
+}
+#leaderboardListView {
+  margin: 0 40px;
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+#emptyLeaderboardText {
+  font: 18px slkscr;
+  text-align: center;
+  color: #81645c;
+  margin: auto 10px;
+  padding: 18px;
+}
+.leaderboard-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  padding: 8px 10px;
+  margin: 0 10px 8px;
+  color: #81645c;
+  font-family: slkscr;
+}
+.leaderboard-entry .medal {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+.leaderboard-entry .entry-info {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+}
+.leaderboard-entry .entry-info div:first-child {
+  font: bold 17px start;
+  overflow-wrap: anywhere;
+}
+#mainMenuLButton {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 50px;
+}
+#about-scroll {
+  position: absolute;
+  inset: 20px 12px 82px;
+  background: #66000000;
+  padding: 12px;
+  overflow: auto;
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.6;
+}
+#about-scroll h1 {
+  font: bold 26px start;
+  text-align: center;
+  color: #ffd700;
+  margin-top: 24px;
+}
+#about-scroll h2 {
+  font: 22px start;
+  text-align: center;
+  color: #ffd700;
+}
+#about-scroll h2.green {
+  color: #00ff00;
+}
+#about-scroll hr {
+  height: 3px;
+  border: 0;
+  background: #ffd700;
+  margin: 20px 0 15px;
+}
+#about-back {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 50px;
+}
+#auth-overlay {
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000b;
+}
+.auth-dialog {
+  width: 92%;
+  max-height: 85%;
+  overflow: auto;
+  background: #261812;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #efd5bd;
+}
+.auth-dialog > h2 {
+  font: 23px start;
+  text-align: center;
+  color: #ffd700;
+  margin: 0;
+}
+.auth-dialog > p {
+  font: 13px start;
+  text-align: center;
+  margin: 4px 0;
+}
+.auth-dialog > input {
+  font: 14px start;
+  height: 50px;
+  padding: 8px;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #bca#aa4;
+  background: none;
+  color: white;
+}
+.auth-dialog > button {
+  width: 100%;
+  min-height: 45px;
+  border: none;
+  background: #49352b;
+  color: #efd5bd;
+  font-size: 12px;
+}
+#auth-back {
+  align-self: flex-start !important;
+  width: auto !important;
+  padding: 0 14px;
+}
+#auth-submit {
+  height: 52px !important;
+  background: #79573c !important;
+  color: #fff !important;
+}
+#auth-error {
+  color: #ff9c91 !important;
+  font-family: sans-serif !important;
+}
+.auth-dialog > small {
+  font: 8px start;
+  text-align: center;
+}
+
+/* Original Android splash screen transition */
+
+#splash-screen img {
+    object-fit: cover;
+}
+
+#splash-screen {
+    opacity: 1;
+    z-index: 20;
+    pointer-events: none;
+}
+
+#splash-screen.splash-fade-out {
+    animation: splashFadeOut 500ms ease-in-out forwards;
+}
+
+#menu-screen.splash-fade-in {
+    animation: splashFadeIn 500ms ease-in-out forwards;
+}
+
+@keyframes splashFadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+@keyframes splashFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #splash-screen.splash-fade-out,
+    #menu-screen.splash-fade-in {
+        animation-duration: 1ms;
+    }
+}
