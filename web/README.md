@@ -1,6 +1,6 @@
 # Angono Giants — Android-faithful browser port
 
-This is a **separate HTML5/JavaScript web port of the Android project supplied in `src.zip`**, not an Android Studio HTML source listing. It was rebuilt from the original Java and XML rules. Your Android project is **not** modified. Unzip this project as `D:\AngonoGiants\web` (or another folder outside `app`).
+This is a **separate HTML5/JavaScript web port of the Android project**, not an Android Studio HTML source listing. It was rebuilt from the original Java and XML rules. Your Android project is **not** modified. Unzip this project as `D:\AngonoGiants\web` (or another folder outside `app`).
 
 ## Exactly what is preserved
 
@@ -16,7 +16,7 @@ This is a **separate HTML5/JavaScript web port of the Android project supplied i
 
 ## Setup and run on Windows
 
-1. Extract the ZIP so that `D:\AngonoGiants\web\site\index.html` exists.
+1. Make sure `D:\AngonoGiants\web\site\index.html` exists.
 2. Ensure Python 3 is installed.
 3. Open PowerShell:
 

@@ -1,5 +1,11 @@
-// For an OPTIONAL connection to the SAME Android Firebase project:
-// Firebase console > Project settings > Add app > Web app, copy its firebaseConfig.
-// Do not paste Android google-services.json here. Enable authorized hosting domain.
-export const firebaseConfig = null;
-// Example: export const firebaseConfig = {apiKey:'...',authDomain:'...',databaseURL:'https://angonogiants-default-rtdb.asia-southeast1.firebasedatabase.app',projectId:'...',appId:'...'};
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyBoAY0iEqw_JUwjQXcK6YfXNPFHimUn-U8",
+  authDomain: "angonogiants.firebaseapp.com",
+  databaseURL: "https://angonogiants-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "angonogiants",
+  storageBucket: "angonogiants.firebasestorage.app",
+  messagingSenderId: "644231996590",
+  appId: "1:644231996590:web:d85f86eb7698b58a04b93f",
+  measurementId: "G-FZFD3FE2YY"
+};
